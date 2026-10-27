@@ -3364,14 +3364,20 @@
                                 <div class="dropdown-user-email">${user.email}</div>
                                 <span class="dropdown-user-badge">${(user.kitchenType || 'MEMBER').toUpperCase()}</span>
                             </li>
-                            <li><a class="dropdown-item gfb-dropdown-item" href="javascript:void(0)" onclick="ProfileUI.openModal('personal')">
-                                <span>👤</span> My Profile &amp; Settings
+                            <li><a class="dropdown-item gfb-dropdown-item" href="account.html" style="background: rgba(223, 171, 87, 0.15); color: #dfab57 !important; font-weight: 700 !important;">
+                                <span>🏢</span> <strong>Your Account Hub ↗</strong>
                             </a></li>
-                            <li><a class="dropdown-item gfb-dropdown-item" href="javascript:void(0)" onclick="ProfileUI.openModal('orders')">
-                                <span>📦</span> My Orders &amp; Bookings
+                            <li><a class="dropdown-item gfb-dropdown-item" href="account.html?tab=orders">
+                                <span>📦</span> Your Orders &amp; Bookings
                             </a></li>
-                            <li><a class="dropdown-item gfb-dropdown-item" href="javascript:void(0)" onclick="ProfileUI.openModal('kitchen')">
-                                <span>🍳</span> Kitchen Specifications
+                            <li><a class="dropdown-item gfb-dropdown-item" href="account.html?tab=security">
+                                <span>🔐</span> Login &amp; Security
+                            </a></li>
+                            <li><a class="dropdown-item gfb-dropdown-item" href="account.html?tab=addresses">
+                                <span>📍</span> Your Addresses
+                            </a></li>
+                            <li><a class="dropdown-item gfb-dropdown-item" href="account.html?tab=kitchen">
+                                <span>🍳</span> Kitchen &amp; Machine Specs
                             </a></li>
                             <li><hr class="dropdown-divider" style="border-color: rgba(255,255,255,0.1);"></li>
                             <li><a class="dropdown-item gfb-dropdown-item text-danger" href="javascript:void(0)" onclick="AuthManager.signOut()">
@@ -3838,6 +3844,7 @@
                         <div>
                             <h5 class="modal-title mb-0" id="modalProfileName">User Profile</h5>
                             <span class="dropdown-user-badge" id="modalProfileBadge">VERIFIED MEMBER</span>
+                            <a href="account.html" class="btn btn-sm btn-bronze ms-3 py-1 px-2" style="font-size: 11px;">Open Full Account Hub ↗</a>
                         </div>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

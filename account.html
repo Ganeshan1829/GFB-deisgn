@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your Account | Garbo Free Bharat (GFB)</title>
+    <meta name="description" content="Manage your GFB account, demo bookings, installation addresses, kitchen specifications, and machine service history.">
+    
+    <!-- Google Fonts & Bootstrap 5 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+    <style>
+        :root {
+            --ink: #102333;
+            --ink-dark: #07121c;
+            --ink-card: #0d1e2e;
+            --ink-card-hover: #12273c;
+            --bronze: #dfab57;
+            --bronze-glow: rgba(223, 171, 87, 0.35);
+            --bronze-soft: rgba(223, 171, 87, 0.12);
+            --text-light: #e6eef5;
+            --text-muted: #95abbc;
+            --border-subtle: rgba(223, 171, 87, 0.22);
+            --border-card: rgba(255, 255, 255, 0.08);
+            --success: #34d399;
+            --warning: #fbbf24;
+            --danger: #f87171;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background: #081420;
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6, .brand-font {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        /* Top Navbar */
+        .account-navbar {
+            background: rgba(16, 35, 51, 0.98);
+            backdrop-filter: blur(20px);
+            border-top: 2px solid var(--bronze);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .brand-logo-img {
+            height: 48px;
+            width: auto;
+            max-width: 195px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+            transition: transform 0.25s ease;
+        }
+
+        .brand-logo-img:hover {
+            transform: scale(1.03);
+        }
+
+        .nav-back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-card);
+        }
+
+        .nav-back-link:hover {
+            color: var(--bronze);
+            background: var(--bronze-soft);
+            border-color: var(--border-subtle);
+        }
+
+        /* User Header Chip */
+        .user-top-chip {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #dfab57, #9b6c26);
+            color: #07121c;
+            font-weight: 800;
+            font-size: 15px;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            text-transform: uppercase;
+        }
+
+        /* Breadcrumb Bar */
+        .sub-header-bar {
+            background: #091724;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 10px 0;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .sub-header-bar a {
+            color: var(--bronze);
+            text-decoration: none;
+        }
+
+        .sub-header-bar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Account Welcome Hero Card */
+        .account-hero-card {
+            background: linear-gradient(135deg, #0d2235 0%, #081724 100%);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 26px 30px;
+            margin-top: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .account-hero-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(223, 171, 87, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .account-hero-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #dfab57, #8a5e1d);
+            color: #07121c;
+            font-weight: 800;
+            font-size: 28px;
+            display: grid;
+            place-items: center;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            flex-shrink: 0;
+        }
+
+        .stat-pill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            padding: 10px 18px;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .stat-pill-num {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--bronze);
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .stat-pill-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        /* Amazon/Flipkart-Style Dashboard Grid Cards */
+        .hub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .hub-card {
+            background: var(--ink-card);
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            padding: 22px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            cursor: pointer;
+            transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .hub-card:hover, .hub-card.active {
+            background: var(--ink-card-hover);
+            border-color: var(--bronze);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45), 0 0 15px rgba(223, 171, 87, 0.15);
+        }
+
+        .hub-card.active {
+            border-left: 4px solid var(--bronze);
+        }
+
+        .hub-icon-box {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: var(--bronze-soft);
+            border: 1px solid var(--border-subtle);
+            display: grid;
+            place-items: center;
+            font-size: 22px;
+            color: var(--bronze);
+            flex-shrink: 0;
+            transition: transform 0.25s ease;
+        }
+
+        .hub-card:hover .hub-icon-box {
+            transform: scale(1.08);
+            background: rgba(223, 171, 87, 0.22);
+        }
+
+        .hub-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .hub-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        /* Detail Panel Sections */
+        .section-view-panel {
+            background: var(--ink-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            display: none;
+        }
+
+        .section-view-panel.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .panel-header {
+            border-bottom: 1px solid var(--border-card);
+            padding-bottom: 18px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .panel-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Order / Booking Cards */
+        .order-item-card {
+            background: rgba(8, 20, 32, 0.7);
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .order-item-card:hover {
+            border-color: var(--border-subtle);
+        }
+
+        .order-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 14px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .order-badge {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .order-badge.confirmed {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .order-badge.pending {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        /* Order Progress Tracker */
+        .tracker-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 20px 0 15px;
+        }
+
+        .tracker-steps::before {
+            content: '';
+            position: absolute;
+            top: 14px;
+            left: 5%;
+            right: 5%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        .tracker-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 25%;
+        }
+
+        .tracker-dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #14283b;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-muted);
+            margin: 0 auto 8px;
+            display: grid;
+            place-items: center;
+            font-size: 12px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .tracker-step.completed .tracker-dot {
+            background: var(--bronze);
+            border-color: var(--bronze);
+            color: #07121c;
+            box-shadow: 0 0 12px rgba(223, 171, 87, 0.5);
+        }
+
+        .tracker-step.active .tracker-dot {
+            background: #173854;
+            border-color: var(--bronze);
+            color: var(--bronze);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(223, 171, 87, 0.6); }
+            70% { box-shadow: 0 0 0 10px rgba(223, 171, 87, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(223, 171, 87, 0); }
+        }
+
+        .tracker-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .tracker-step.completed .tracker-label,
+        .tracker-step.active .tracker-label {
+            color: #ffffff;
+        }
+
+        /* Address Cards */
+        .address-card {
+            background: rgba(8, 20, 32, 0.65);
+            border: 1px solid var(--border-card);
+            border-radius: 14px;
+            padding: 18px 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .address-card:hover {
+            border-color: var(--border-subtle);
+        }
+
+        .address-card.is-default {
+            border-color: var(--bronze);
+            background: rgba(223, 171, 87, 0.04);
+        }
+
+        .default-tag {
+            font-size: 9.5px;
+            font-weight: 700;
+            background: var(--bronze);
+            color: #07121c;
+            padding: 2px 8px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Form Controls */
+        .form-label {
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--bronze);
+            letter-spacing: 0.3px;
+            margin-bottom: 6px;
+        }
+
+        .form-control, .form-select {
+            background: #102333;
+            border: 1px solid rgba(223, 171, 87, 0.25);
+            color: #ffffff;
+            border-radius: 10px;
+            padding: 11px 15px;
+            font-size: 13.5px;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background: #142b40;
+            border-color: var(--bronze);
+            box-shadow: 0 0 12px var(--bronze-glow);
+            color: #ffffff;
+        }
+
+        .form-control::placeholder {
+            color: #5d7589;
+        }
+
+        /* Buttons */
+        .btn-bronze {
+            background: linear-gradient(135deg, #dfab57, #b27f2c);
+            color: #07121c !important;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 22px;
+            font-size: 13px;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 15px rgba(223, 171, 87, 0.3);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-bronze:hover {
+            background: linear-gradient(135deg, #eec176, #c69137);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(223, 171, 87, 0.45);
+        }
+
+        .btn-outline-subtle {
+            background: transparent;
+            border: 1px solid var(--border-card);
+            color: var(--text-light);
+            font-size: 12.5px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 10px;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-outline-subtle:hover {
+            border-color: var(--bronze);
+            color: var(--bronze);
+            background: var(--bronze-soft);
+        }
+
+        /* Not logged in hero card */
+        .guest-hero-card {
+            background: #0d1e2e;
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 580px;
+            margin: 60px auto;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Toast Container */
+        .gfb-toast-container {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .gfb-toast {
+            background: #0d1e2e;
+            border: 1px solid var(--bronze);
+            border-left: 4px solid var(--bronze);
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            pointer-events: auto;
+            transform: translateX(120%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gfb-toast.show {
+            transform: translateX(0);
+        }
+
+        /* Footer */
+        .account-footer {
+            margin-top: auto;
+            background: #050d15;
+            border-top: 1px solid rgba(223, 171, 87, 0.2);
+            padding: 30px 0;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="account-navbar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <a href="index.html" aria-label="GFB Home">
+                    <img src="gfb_logo_transparent.png" alt="Garbo Free Bharat" class="brand-logo-img">
+                </a>
+                <span class="d-none d-md-inline-block text-muted" style="font-size: 14px; font-weight: 600; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 12px; color: #a4b9c9;">
+                    Your Account Hub
+                </span>
+            </div>
+
+            <div class="d-flex align-items-center gap-3">
+                <a href="index.html" class="nav-back-link">
+                    <span>←</span>
+                    <span class="d-none d-sm-inline">Back to Store</span>
+                </a>
+
+                <!-- Logged In User Pill or Login Prompt -->
+                <div id="topUserSlot">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- BREADCRUMBS -->
+    <div class="sub-header-bar">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div>
+                <a href="index.html">Home</a> &gt; <span class="text-white" id="currentBreadcrumb">Your Account</span>
+            </div>
+            <div style="font-size: 11px;">
+                <span>🔒 Secure Member Session (SSL Encrypted)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="container my-4 flex-grow-1" id="mainAccountContent">
+
+        <!-- LOGGED-IN VIEW -->
+        <div id="authAccountView" class="d-none">
+
+            <!-- PROFILE HERO HEADER -->
+            <div class="account-hero-card">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-4 position-relative" style="z-index: 2;">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="account-hero-avatar" id="heroAvatar">G</div>
+                        <div>
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <h2 class="h4 mb-0 text-white fw-bold" id="heroUserName">Ganeshan M</h2>
+                                <span class="badge" style="background: rgba(223, 171, 87, 0.2); color: #dfab57; border: 1px solid #dfab57;" id="heroBadge">VERIFIED MEMBER</span>
+                            </div>
+                            <p class="mb-0 text-muted" style="font-size: 13px;" id="heroUserEmail">ganeshanmani.me1@gmail.com</p>
+                            <p class="mb-0 text-muted" style="font-size: 12px;" id="heroUserPhone">+91 98765 43210</p>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="d-flex gap-2 flex-wrap">
+                        <div class="stat-pill">
+                            <div class="stat-pill-num" id="statOrdersCount">1</div>
+                            <div class="stat-pill-label">Demo Bookings</div>
+                        </div>
+                        <div class="stat-pill">
+                            <div class="stat-pill-num">Active</div>
+                            <div class="stat-pill-label">3-Yr Warranty</div>
+                        </div>
+                        <div class="stat-pill">
+                            <div class="stat-pill-num" id="statAddressesCount">2</div>
+                            <div class="stat-pill-label">Addresses</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AMAZON / FLIPKART STYLE CARD GRID -->
+            <h3 class="h5 fw-bold text-white mb-3">Manage Your GFB Account</h3>
+            <div class="hub-grid" id="hubCardsGrid">
+                
+                <!-- Card 1: Your Orders -->
+                <div class="hub-card" onclick="AccountPage.showSection('orders')">
+                    <div class="hub-icon-box">📦</div>
+                    <div>
+                        <div class="hub-title">Your Orders &amp; Bookings</div>
+                        <p class="hub-desc">Track demo appointments, view machine reservations, and download invoices.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Login & Security -->
+                <div class="hub-card" onclick="AccountPage.showSection('security')">
+                    <div class="hub-icon-box">🔐</div>
+                    <div>
+                        <div class="hub-title">Login &amp; Security</div>
+                        <p class="hub-desc">Edit your name, verified mobile number, email, and password settings.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Your Addresses -->
+                <div class="hub-card" onclick="AccountPage.showSection('addresses')">
+                    <div class="hub-icon-box">📍</div>
+                    <div>
+                        <div class="hub-title">Your Addresses</div>
+                        <p class="hub-desc">Manage primary kitchen installation address and delivery locations.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: Kitchen & Machine Specs -->
+                <div class="hub-card" onclick="AccountPage.showSection('kitchen')">
+                    <div class="hub-icon-box">🍳</div>
+                    <div>
+                        <div class="hub-title">Kitchen &amp; Machine Specs</div>
+                        <p class="hub-desc">Sink drain opening (3.5"), under-sink clearance, 16A electrical socket, and appliance serial.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5: Invoices & Commercial GST -->
+                <div class="hub-card" onclick="AccountPage.showSection('gst')">
+                    <div class="hub-icon-box">📑</div>
+                    <div>
+                        <div class="hub-title">Invoices &amp; GST Details</div>
+                        <p class="hub-desc">Business GSTIN for input tax credit, downloadable billing receipts, and quote approvals.</p>
+                    </div>
+                </div>
+
+                <!-- Card 6: Service & Warranty -->
+                <div class="hub-card" onclick="AccountPage.showSection('service')">
+                    <div class="hub-icon-box">🛠️</div>
+                    <div>
+                        <div class="hub-title">Service &amp; Warranty</div>
+                        <p class="hub-desc">Request maintenance technician visit, check cutter-ring health, and warranty claim.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ==========================================
+                 DETAILED SECTION VIEWS (EXPANDED PANELS)
+                 ========================================== -->
+
+            <!-- 1. ORDERS & BOOKINGS PANEL -->
+            <section id="panel-orders" class="section-view-panel">
+                <div class="panel-header">
+                    <h4 class="panel-title">📦 Your Orders &amp; Demo Appointments</h4>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-subtle" onclick="AccountPage.simulateNewOrder()">+ Book New Demo</button>
+                        <button class="btn btn-outline-subtle" onclick="AccountPage.closePanels()">Back to Hub</button>
+                    </div>
+                </div>
+
+                <div id="ordersListContainer">
+                    <!-- Populated dynamically -->
+                </div>
+            </section>
+
+            <!-- 2. LOGIN & SECURITY PANEL -->
+            <section id="panel-security" class="section-view-panel">
+                <div class="panel-header">
+                    <h4 class="panel-title">🔐 Login &amp; Security Settings</h4>
+                    <button class="btn btn-outline-subtle" onclick="AccountPage.closePanels()">Back to Hub</button>
+                </div>
+
+                <form onsubmit="AccountPage.saveSecurity(event)" class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label" for="secName">Full Name</label>
+                        <input type="text" class="form-control" id="secName" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="secPhone">Mobile Phone (Primary OTP)</label>
+                        <input type="tel" class="form-control" id="secPhone" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="secEmail">Email Address</label>
+                        <input type="email" class="form-control" id="secEmail" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="secPassword">Account Password</label>
+                        <input type="password" class="form-control" id="secPassword" value="••••••••••••" placeholder="Update password (optional)">
+                    </div>
+                    <div class="col-12 mt-4 d-flex justify-content-between align-items-center">
+                        <button type="button" class="btn btn-outline-danger" onclick="AccountPage.signOut()">Sign Out of Account</button>
+                        <button type="submit" class="btn btn-bronze">Save Security Changes ✓</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- 3. ADDRESSES PANEL -->
+            <section id="panel-addresses" class="section-view-panel">
+                <div class="panel-header">
+                    <h4 class="panel-title">📍 Your Installation &amp; Delivery Addresses</h4>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-bronze" onclick="AccountPage.showAddAddressModal()">+ Add New Address</button>
+                        <button class="btn btn-outline-subtle" onclick="AccountPage.closePanels()">Back to Hub</button>
+                    </div>
+                </div>
+
+                <div class="row g-3" id="addressListContainer">
+                    <!-- Populated dynamically -->
+                </div>
+            </section>
+
+            <!-- 4. KITCHEN & MACHINE SPECS PANEL -->
+            <section id="panel-kitchen" class="section-view-panel">
+                <div class="panel-header">
+                    <h4 class="panel-title">🍳 Kitchen &amp; Machine Specifications</h4>
+                    <button class="btn btn-outline-subtle" onclick="AccountPage.closePanels()">Back to Hub</button>
+                </div>
+
+                <form onsubmit="AccountPage.saveKitchenSpecs(event)" class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label" for="kitchType">Kitchen Environment</label>
+                        <select class="form-select" id="kitchType">
+                            <option value="Home / apartment">Residential - Home / Apartment</option>
+                            <option value="Hotel / restaurant">Commercial - Hotel / Restaurant</option>
+                            <option value="Cloud kitchen / canteen">Commercial - Cloud Kitchen / Canteen</option>
+                            <option value="Other">Institutional / Hospital / Campus</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="kitchDrain">Sink Drain Opening Size</label>
+                        <select class="form-select" id="kitchDrain">
+                            <option value="Standard 3.5 inches (90mm)">Standard 3.5 inches (90mm) - Plug &amp; Play</option>
+                            <option value="Compact 3.0 inches">Compact 3.0 inches (GFB Adapter Ring provided)</option>
+                            <option value="Large 4.5 inches Commercial">Large 4.5 inches Commercial</option>
+                            <option value="Need Free Site Inspection">Unsure - Request Free Inspection</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="kitchPower">Under-Sink Power Point (16A)</label>
+                        <select class="form-select" id="kitchPower">
+                            <option value="16A standard 3-pin socket available">16A socket already available under sink</option>
+                            <option value="Socket nearby (within 1.5m)">Socket nearby (extension wiring required)</option>
+                            <option value="Electrician wiring requested">GFB Electrician installation needed</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="kitchDisposer">Registered Machine Serial</label>
+                        <input type="text" class="form-control" id="kitchDisposer" value="GFB-PRO-IND-2026-X88" readonly>
+                    </div>
+                    <div class="col-12 mt-4 text-end">
+                        <button type="submit" class="btn btn-bronze">Update Kitchen Profile ✓</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- 5. GST & INVOICES PANEL -->
+            <section id="panel-gst" class="section-view-panel">
+                <div class="panel-header">
+                    <h4 class="panel-title">📑 Commercial GST &amp; Billing Invoices</h4>
+                    <button class="btn btn-outline-subtle" onclick="AccountPage.closePanels()">Back to Hub</button>
+                </div>
+
+                <form onsubmit="AccountPage.saveGst(event)" class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label" for="gstNumber">GSTIN Number (For Business Tax Credit)</label>
+                        <input type="text" class="form-control" id="gstNumber" placeholder="33AAAAA0000A1Z5" value="33AAACG1829M1ZP">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="gstName">Registered Business Name</label>
+                        <input type="text" class="form-control" id="gstName" placeholder="Garbo Free Foodworks LLP" value="Garbo Free Hospitality Solutions">
+                    </div>
+                    <div class="col-12">
+                        <div class="p-3 rounded" style="background: rgba(255,255,255,0.04); border: 1px dashed var(--border-subtle);">
+                            <span class="text-white fw-bold d-block mb-1" style="font-size: 13px;">Latest Tax Invoices</span>
+                            <div class="d-flex justify-content-between align-items-center py-2 border-bottom border-secondary" style="font-size: 12.5px;">
+                                <div>
+                                    <strong class="text-white">INV-2026-GFB-0941</strong> - GFB Pro BioGrind Disposer (Full Kit)
+                                    <div class="text-muted" style="font-size: 11px;">26 Oct 2026 • 18% GST Claimable</div>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-outline-subtle" onclick="AccountPage.downloadInvoice('INV-2026-GFB-0941')">📄 Download PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 text-end mt-4">
+                        <button type="submit" class="btn btn-bronze">Save GST Details ✓</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- 6. SERVICE & WARRANTY PANEL -->
+            <section id="panel-service" class="section-view-panel">
+                <div class="panel-header">
+                    <h4 class="panel-title">🛠️ Machine Warranty &amp; On-Site Support</h4>
+                    <button class="btn btn-outline-subtle" onclick="AccountPage.closePanels()">Back to Hub</button>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="p-3 rounded h-100" style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3);">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <strong class="text-white">GFB 3-Year Official Warranty</strong>
+                                <span class="order-badge confirmed">ACTIVE</span>
+                            </div>
+                            <p class="text-muted" style="font-size: 12px; margin-bottom: 8px;">Covers induction powertrain motor, stainless 304 shredder ring, and anti-jam electronics.</p>
+                            <span style="font-size: 11px; color: var(--bronze);">Valid until: 28 October 2029</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="p-3 rounded h-100" style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-card);">
+                            <strong class="text-white d-block mb-1">Need a Technician Visit?</strong>
+                            <p class="text-muted" style="font-size: 12px; margin-bottom: 12px;">Schedule free preventive maintenance checkup or sink alignment consultation.</p>
+                            <button type="button" class="btn btn-bronze btn-sm" onclick="AccountPage.requestServiceVisit()">📅 Schedule Free Visit</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- GUEST (NOT LOGGED IN) VIEW -->
+        <div id="guestAccountView" class="guest-hero-card">
+            <img src="gfb_logo_transparent.png" alt="GFB" style="height: 52px; width: auto; margin-bottom: 18px;">
+            <h2 class="h4 text-white fw-bold mb-2">Sign In to Your GFB Account</h2>
+            <p class="text-muted mb-4" style="font-size: 13px;">Manage your kitchen disposer bookings, track site assessments, view warranty, and manage installation addresses.</p>
+
+            <div class="d-flex flex-column gap-3 max-w-sm mx-auto" style="max-width: 320px;">
+                <button class="btn btn-bronze py-2" onclick="AccountPage.quickDemoLogin()">
+                    ⚡ 1-Click Instant Demo Login
+                </button>
+                <a href="index.html#home" class="btn btn-outline-subtle py-2">
+                    ← Return to Homepage
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ADD ADDRESS MODAL -->
+    <div class="modal fade" id="addAddressModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background: #0d1e2e; border: 1px solid var(--bronze); border-radius: 18px; color: #fff;">
+                <div class="modal-header" style="border-bottom: 1px solid rgba(223, 171, 87, 0.25);">
+                    <h5 class="modal-title fw-bold">📍 Add New Installation Address</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" style="filter: invert(1);"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form onsubmit="AccountPage.saveNewAddress(event)" class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label" for="addrLabel">Address Label (e.g. Primary Residence / Restaurant Branch)</label>
+                            <input type="text" class="form-control" id="addrLabel" placeholder="e.g. Home Kitchen / Anna Nagar Branch" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" for="addrStreet">Street &amp; Building Details</label>
+                            <input type="text" class="form-control" id="addrStreet" placeholder="Flat No., Floor, Apartment Name, Street" required>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label" for="addrCity">City</label>
+                            <input type="text" class="form-control" id="addrCity" placeholder="Chennai" required>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label" for="addrPin">Pincode</label>
+                            <input type="text" class="form-control" id="addrPin" placeholder="600001" required>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="addrSetDefault" checked>
+                                <label class="form-check-label" for="addrSetDefault" style="font-size: 12px; color: #9db3c4;">Set as default installation address</label>
+                            </div>
+                        </div>
+                        <div class="col-12 text-end mt-3">
+                            <button type="submit" class="btn btn-bronze">Save Address ✓</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATIONS CONTAINER -->
+    <div class="gfb-toast-container" id="gfbToastContainer"></div>
+
+    <!-- FOOTER -->
+    <footer class="account-footer">
+        <div class="container text-center">
+            <p class="mb-1">Garbo Free Bharat (GFB) — Clean India ★ Green India</p>
+            <p class="mb-0" style="font-size: 11px; opacity: 0.7;">Official Customer Portal • Need Help? Call 1800-GFB-CARE or visit <a href="index.html#contact" style="color: var(--bronze);">Support Desk</a></p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <!-- ACCOUNT PAGE ENGINE JS -->
+    <script>
+        'use strict';
+
+        const AccountPage = {
+            USER_KEY: 'gfb_user_profile',
+            ORDERS_KEY: 'gfb_user_orders',
+            ADDRESS_KEY: 'gfb_user_addresses',
+
+            getUser() {
+                try {
+                    const data = localStorage.getItem(this.USER_KEY);
+                    return data ? JSON.parse(data) : null;
+                } catch(e) { return null; }
+            },
+
+            saveUser(user) {
+                localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+                this.render();
+            },
+
+            getOrders() {
+                try {
+                    const data = localStorage.getItem(this.ORDERS_KEY);
+                    if (data) return JSON.parse(data);
+                } catch(e) {}
+                return [
+                    {
+                        id: 'GFB-DEMO-8492',
+                        model: 'GFB Smart Bio-Grind Disposer (Pro Home Edition)',
+                        type: 'Under-Sink On-Site Demonstration',
+                        date: 'Scheduled for tomorrow, 3:00 PM',
+                        status: 'confirmed',
+                        statusText: 'Technician Assigned',
+                        stepIndex: 2, // 0: Booked, 1: Site Scheduled, 2: Technician Dispatched, 3: Completed
+                        address: 'Plot 18, 4th Main Road, Gandhi Nagar, Chennai - 600020'
+                    },
+                    {
+                        id: 'GFB-ORD-1102',
+                        model: 'GFB Bio-Ring Commercial Heavy Shredder (3.0 HP)',
+                        type: 'Commercial Kitchen Delivery & 3-Bolt Mount Fitting',
+                        date: 'Completed on 22 Oct 2026',
+                        status: 'confirmed',
+                        statusText: 'Installed & Verified',
+                        stepIndex: 3,
+                        address: 'Chennai Cloud Kitchen #2, Guindy Industrial Area'
+                    }
+                ];
+            },
+
+            getAddresses() {
+                try {
+                    const data = localStorage.getItem(this.ADDRESS_KEY);
+                    if (data) return JSON.parse(data);
+                } catch(e) {}
+                return [
+                    {
+                        id: 1,
+                        label: 'Primary Home Kitchen',
+                        street: 'Plot 18, 4th Main Road, Gandhi Nagar, Adyar',
+                        city: 'Chennai',
+                        pincode: '600020',
+                        isDefault: true
+                    },
+                    {
+                        id: 2,
+                        label: 'Family Apartment',
+                        street: 'Flat 4B, Emerald Heights, Anna Nagar West',
+                        city: 'Chennai',
+                        pincode: '600040',
+                        isDefault: false
+                    }
+                ];
+            },
+
+            init() {
+                this.render();
+                // Check URL params for specific tab
+                const params = new URLSearchParams(window.location.search);
+                const tab = params.get('tab');
+                if (tab) {
+                    this.showSection(tab);
+                }
+            },
+
+            render() {
+                const user = this.getUser();
+                const authView = document.getElementById('authAccountView');
+                const guestView = document.getElementById('guestAccountView');
+                const topUserSlot = document.getElementById('topUserSlot');
+
+                if (user) {
+                    authView.classList.remove('d-none');
+                    guestView.classList.add('d-none');
+
+                    const initial = (user.name || 'G').charAt(0).toUpperCase();
+                    document.getElementById('heroAvatar').textContent = initial;
+                    document.getElementById('heroUserName').textContent = user.name;
+                    document.getElementById('heroUserEmail').textContent = user.email || 'user@example.com';
+                    document.getElementById('heroUserPhone').textContent = user.phone || '+91 98401 23456';
+                    document.getElementById('heroBadge').textContent = (user.kitchenType || 'VERIFIED MEMBER').toUpperCase();
+
+                    // Security fields
+                    document.getElementById('secName').value = user.name || '';
+                    document.getElementById('secPhone').value = user.phone || '';
+                    document.getElementById('secEmail').value = user.email || '';
+
+                    // Kitchen fields
+                    document.getElementById('kitchType').value = user.kitchenType || 'Home / apartment';
+                    document.getElementById('kitchDrain').value = user.drainSize || 'Standard 3.5 inches (90mm)';
+                    document.getElementById('kitchPower').value = user.power || '16A standard 3-pin socket available';
+
+                    // Top navbar slot
+                    topUserSlot.innerHTML = `
+                        <div class="user-top-chip">
+                            <div class="avatar-circle">${initial}</div>
+                            <div class="d-none d-md-block text-start" style="line-height: 1.2;">
+                                <div style="font-size: 12px; font-weight: 700; color: #fff;">${user.name.split(' ')[0]}</div>
+                                <div style="font-size: 10px; color: var(--bronze);">Your Account</div>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger ms-2 py-0 px-2" style="font-size: 11px; height: 26px;" onclick="AccountPage.signOut()" title="Sign Out">Sign Out</button>
+                        </div>
+                    `;
+
+                    this.renderOrders();
+                    this.renderAddresses();
+                } else {
+                    authView.classList.add('d-none');
+                    guestView.classList.remove('d-none');
+                    topUserSlot.innerHTML = `
+                        <button class="btn btn-bronze btn-sm" onclick="AccountPage.quickDemoLogin()">Sign In</button>
+                    `;
+                }
+            },
+
+            quickDemoLogin() {
+                const demoUser = {
+                    name: 'Ganeshan M',
+                    email: 'ganeshanmani.me1@gmail.com',
+                    phone: '+91 98765 43210',
+                    city: 'Chennai, 600001',
+                    kitchenType: 'Home / apartment',
+                    address: 'Plot 18, 4th Main Road, Gandhi Nagar, Chennai - 600020',
+                    drainSize: 'Standard 3.5 inches (90mm)',
+                    power: '16A standard 3-pin socket available',
+                    memberSince: 'October 2026'
+                };
+                this.saveUser(demoUser);
+                this.showToast('⚡ Signed in as Ganeshan M. Welcome to your account dashboard!', 'success');
+            },
+
+            signOut() {
+                localStorage.removeItem(this.USER_KEY);
+                this.render();
+                this.showToast('👋 You have signed out.', 'info');
+            },
+
+            showSection(sectionId) {
+                // Highlight active hub card
+                document.querySelectorAll('.hub-card').forEach(card => card.classList.remove('active'));
+                
+                // Hide all panels
+                document.querySelectorAll('.section-view-panel').forEach(panel => panel.classList.remove('active'));
+
+                // Show selected panel
+                const target = document.getElementById('panel-' + sectionId);
+                if (target) {
+                    target.classList.add('active');
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('currentBreadcrumb').textContent = 'Your Account > ' + target.querySelector('.panel-title').textContent.trim();
+                }
+            },
+
+            closePanels() {
+                document.querySelectorAll('.section-view-panel').forEach(panel => panel.classList.remove('active'));
+                document.getElementById('currentBreadcrumb').textContent = 'Your Account';
+                document.getElementById('hubCardsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            },
+
+            renderOrders() {
+                const container = document.getElementById('ordersListContainer');
+                const orders = this.getOrders();
+                document.getElementById('statOrdersCount').textContent = orders.length;
+
+                if (!orders.length) {
+                    container.innerHTML = '<div class="text-center py-5 text-muted">No orders or demo appointments found.</div>';
+                    return;
+                }
+
+                container.innerHTML = orders.map(ord => {
+                    const stepIdx = ord.stepIndex ?? 1;
+                    return `
+                        <div class="order-item-card">
+                            <div class="order-header-row">
+                                <div>
+                                    <span style="font-size: 11px; color: var(--bronze); font-weight: 700; letter-spacing: 0.5px;">ORDER ID: ${ord.id}</span>
+                                    <h5 class="text-white fw-bold mb-1 mt-1" style="font-size: 15px;">${ord.model}</h5>
+                                    <div class="text-muted" style="font-size: 12px;">${ord.type} • ${ord.date}</div>
+                                </div>
+                                <div class="text-end">
+                                    <span class="order-badge ${ord.status}">${ord.statusText}</span>
+                                    <div class="mt-2">
+                                        <button class="btn btn-sm btn-outline-subtle py-1 px-3" onclick="AccountPage.showToast('📋 Order tracking details synced with local logistics partner.')">Track Appointment</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Progress Timeline -->
+                            <div class="tracker-steps">
+                                <div class="tracker-step ${stepIdx >= 0 ? 'completed' : ''}">
+                                    <div class="tracker-dot">✓</div>
+                                    <div class="tracker-label">Booked</div>
+                                </div>
+                                <div class="tracker-step ${stepIdx >= 1 ? (stepIdx === 1 ? 'active' : 'completed') : ''}">
+                                    <div class="tracker-dot">${stepIdx > 1 ? '✓' : '2'}</div>
+                                    <div class="tracker-label">Site Scheduled</div>
+                                </div>
+                                <div class="tracker-step ${stepIdx >= 2 ? (stepIdx === 2 ? 'active' : 'completed') : ''}">
+                                    <div class="tracker-dot">${stepIdx > 2 ? '✓' : '3'}</div>
+                                    <div class="tracker-label">Technician Dispatched</div>
+                                </div>
+                                <div class="tracker-step ${stepIdx >= 3 ? 'completed' : ''}">
+                                    <div class="tracker-dot">${stepIdx >= 3 ? '✓' : '4'}</div>
+                                    <div class="tracker-label">Installed</div>
+                                </div>
+                            </div>
+
+                            <div class="mt-3 pt-3 border-top border-dark d-flex justify-content-between align-items-center flex-wrap gap-2" style="font-size: 12px; color: #8fa5b8;">
+                                <div>📍 <strong>Address:</strong> ${ord.address}</div>
+                                <div class="d-flex gap-2">
+                                    <a href="javascript:void(0)" onclick="AccountPage.downloadInvoice('${ord.id}')" style="color: var(--bronze); text-decoration: none;">Download Receipt</a> •
+                                    <a href="index.html#contact" style="color: var(--text-muted); text-decoration: none;">Need Help?</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            },
+
+            simulateNewOrder() {
+                const newId = 'GFB-DEMO-' + Math.floor(1000 + Math.random() * 9000);
+                const newBooking = {
+                    id: newId,
+                    model: 'GFB Smart Bio-Grind Assessment & Live Kitchen Demo',
+                    type: 'Standard 3.5" Sink Flange Demonstration',
+                    date: 'Scheduled for Friday, 11:00 AM',
+                    status: 'confirmed',
+                    statusText: 'Technician Assigned',
+                    stepIndex: 1,
+                    address: this.getUser()?.address || 'Chennai Kitchen'
+                };
+                const orders = this.getOrders();
+                orders.unshift(newBooking);
+                localStorage.setItem(this.ORDERS_KEY, JSON.stringify(orders));
+                this.renderOrders();
+                this.showToast('🎉 Demo appointment booked! Order ID: ' + newId, 'success');
+            },
+
+            renderAddresses() {
+                const container = document.getElementById('addressListContainer');
+                const addresses = this.getAddresses();
+                document.getElementById('statAddressesCount').textContent = addresses.length;
+
+                container.innerHTML = addresses.map(addr => `
+                    <div class="col-md-6">
+                        <div class="address-card ${addr.isDefault ? 'is-default' : ''}">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <strong class="text-white">${addr.label}</strong>
+                                    ${addr.isDefault ? '<span class="default-tag">DEFAULT</span>' : ''}
+                                </div>
+                                <p class="text-muted mb-2" style="font-size: 13px; line-height: 1.5;">${addr.street}</p>
+                                <div style="font-size: 12px; color: #a2b7c7;">${addr.city} - ${addr.pincode}</div>
+                            </div>
+                            <div class="mt-3 pt-2 border-top border-dark d-flex justify-content-between align-items-center">
+                                <button class="btn btn-sm btn-link p-0 text-decoration-none" style="font-size: 11.5px; color: var(--bronze);" onclick="AccountPage.showToast('Address editing enabled')">Edit</button>
+                                ${!addr.isDefault ? `<button class="btn btn-sm btn-link p-0 text-decoration-none text-muted" style="font-size: 11.5px;" onclick="AccountPage.setDefaultAddress(${addr.id})">Set as Default</button>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            },
+
+            showAddAddressModal() {
+                bootstrap.Modal.getOrCreateInstance(document.getElementById('addAddressModal')).show();
+            },
+
+            saveNewAddress(e) {
+                e.preventDefault();
+                const label = document.getElementById('addrLabel').value.trim();
+                const street = document.getElementById('addrStreet').value.trim();
+                const city = document.getElementById('addrCity').value.trim();
+                const pincode = document.getElementById('addrPin').value.trim();
+                const isDefault = document.getElementById('addrSetDefault').checked;
+
+                const addresses = this.getAddresses();
+                if (isDefault) {
+                    addresses.forEach(a => a.isDefault = false);
+                }
+                addresses.push({
+                    id: Date.now(),
+                    label,
+                    street,
+                    city,
+                    pincode,
+                    isDefault
+                });
+                localStorage.setItem(this.ADDRESS_KEY, JSON.stringify(addresses));
+                bootstrap.Modal.getInstance(document.getElementById('addAddressModal'))?.hide();
+                this.renderAddresses();
+                this.showToast('📍 New address saved successfully!', 'success');
+            },
+
+            setDefaultAddress(id) {
+                const addresses = this.getAddresses();
+                addresses.forEach(a => a.isDefault = (a.id === id));
+                localStorage.setItem(this.ADDRESS_KEY, JSON.stringify(addresses));
+                this.renderAddresses();
+                this.showToast('✓ Default address updated.', 'success');
+            },
+
+            saveSecurity(e) {
+                e.preventDefault();
+                const user = this.getUser() || {};
+                user.name = document.getElementById('secName').value.trim();
+                user.phone = document.getElementById('secPhone').value.trim();
+                user.email = document.getElementById('secEmail').value.trim();
+                this.saveUser(user);
+                this.showToast('🔐 Login & security details updated successfully!', 'success');
+                this.closePanels();
+            },
+
+            saveKitchenSpecs(e) {
+                e.preventDefault();
+                const user = this.getUser() || {};
+                user.kitchenType = document.getElementById('kitchType').value;
+                user.drainSize = document.getElementById('kitchDrain').value;
+                user.power = document.getElementById('kitchPower').value;
+                this.saveUser(user);
+                this.showToast('🍳 Kitchen specifications updated!', 'success');
+                this.closePanels();
+            },
+
+            saveGst(e) {
+                e.preventDefault();
+                this.showToast('📑 GSTIN & Business billing details saved for automated tax invoice generation!', 'success');
+                this.closePanels();
+            },
+
+            downloadInvoice(id) {
+                this.showToast(`📄 Generating official GST tax invoice for ${id}... Download started!`, 'info');
+            },
+
+            requestServiceVisit() {
+                this.showToast('🛠️ Service appointment request logged! GFB Technician will contact you within 2 business hours.', 'success');
+            },
+
+            showToast(message, type = 'success') {
+                const container = document.getElementById('gfbToastContainer');
+                if (!container) return;
+                const toast = document.createElement('div');
+                toast.className = 'gfb-toast';
+                const icon = type === 'success' ? '✓' : (type === 'warning' ? '⚠️' : 'ℹ️');
+                toast.innerHTML = `<span style="font-size:18px; color:var(--bronze);">${icon}</span><div>${message}</div>`;
+                container.appendChild(toast);
+                requestAnimationFrame(() => toast.classList.add('show'));
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => toast.remove(), 400);
+                }, 3800);
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => AccountPage.init());
+    </script>
+</body>
+
+</html>
