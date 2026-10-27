@@ -1750,6 +1750,393 @@
             }
         }
 
+    
+        /* === GFB AUTH & USER PROFILE SYSTEM === */
+        .auth-nav-btn {
+            background: rgba(223, 171, 87, 0.12);
+            border: 1px solid rgba(223, 171, 87, 0.4);
+            color: #dfab57 !important;
+            padding: 8px 16px !important;
+            border-radius: 20px;
+            font-size: 11.5px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .auth-nav-btn:hover {
+            background: rgba(223, 171, 87, 0.25);
+            border-color: #dfab57;
+            color: #fff !important;
+            box-shadow: 0 0 14px rgba(223, 171, 87, 0.35);
+        }
+
+        /* Profile Dropdown Badge */
+        .profile-badge-btn {
+            background: rgba(16, 35, 51, 0.85);
+            border: 1px solid #dfab57;
+            padding: 5px 14px 5px 6px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: #fff !important;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-badge-btn:hover, .profile-badge-btn[aria-expanded="true"] {
+            background: #172d42;
+            border-color: #f3c272;
+            box-shadow: 0 4px 18px rgba(223, 171, 87, 0.45);
+        }
+
+        .profile-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #dfab57, #9b6c26);
+            color: #0b1723;
+            font-weight: 800;
+            font-size: 13px;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            text-transform: uppercase;
+        }
+
+        .profile-chevron {
+            font-size: 9px;
+            color: #dfab57;
+            transition: transform 0.25s;
+        }
+
+        .profile-badge-btn[aria-expanded="true"] .profile-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Profile Dropdown Menu */
+        .gfb-profile-dropdown {
+            background: #0d1e2e !important;
+            border: 1px solid rgba(223, 171, 87, 0.35) !important;
+            border-radius: 16px !important;
+            padding: 12px !important;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5) !important;
+            min-width: 250px !important;
+            margin-top: 10px !important;
+        }
+
+        .dropdown-user-header {
+            padding: 8px 10px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 8px;
+        }
+
+        .dropdown-user-name {
+            font-weight: 700;
+            font-size: 13.5px;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .dropdown-user-email {
+            font-size: 11px;
+            color: #9db2c2;
+            margin-top: 3px;
+        }
+
+        .dropdown-user-badge {
+            display: inline-block;
+            background: rgba(223, 171, 87, 0.15);
+            color: #dfab57;
+            font-size: 9.5px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-top: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .gfb-dropdown-item {
+            color: #dbe5ee !important;
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            padding: 8px 12px !important;
+            border-radius: 8px !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            transition: all 0.2s ease !important;
+        }
+
+        .gfb-dropdown-item:hover {
+            background: rgba(223, 171, 87, 0.15) !important;
+            color: #dfab57 !important;
+            transform: translateX(3px);
+        }
+
+        .gfb-dropdown-item.text-danger:hover {
+            background: rgba(239, 68, 68, 0.15) !important;
+            color: #ff6b6b !important;
+        }
+
+        /* GFB Custom Luxury Modal Overlays */
+        .gfb-modal .modal-content {
+            background: #0d1e2e;
+            border: 1px solid rgba(223, 171, 87, 0.35);
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+            color: #dbe5ee;
+            overflow: hidden;
+        }
+
+        .gfb-modal .modal-header {
+            border-bottom: 1px solid rgba(223, 171, 87, 0.2);
+            padding: 20px 24px;
+            background: rgba(16, 35, 51, 0.8);
+        }
+
+        .gfb-modal .modal-title {
+            color: #fff;
+            font-weight: 700;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gfb-modal .btn-close {
+            filter: invert(1) brightness(1.5);
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .gfb-modal .btn-close:hover {
+            opacity: 1;
+        }
+
+        .gfb-modal .modal-body {
+            padding: 24px;
+        }
+
+        /* Tab Switchers */
+        .gfb-tabs {
+            display: flex;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .gfb-tab-btn {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border: none;
+            background: transparent;
+            color: #9cb1c2;
+            font-size: 12.5px;
+            font-weight: 600;
+            border-radius: 9px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .gfb-tab-btn.active {
+            background: #dfab57;
+            color: #0d1e2e;
+            font-weight: 700;
+            box-shadow: 0 2px 10px rgba(223, 171, 87, 0.35);
+        }
+
+        .gfb-modal .form-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #d5a969;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .gfb-modal .form-control, .gfb-modal .form-select {
+            background: #14283b;
+            border: 1px solid rgba(223, 171, 87, 0.25);
+            color: #ffffff;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+
+        .gfb-modal .form-control:focus, .gfb-modal .form-select:focus {
+            background: #183047;
+            border-color: #dfab57;
+            box-shadow: 0 0 12px rgba(223, 171, 87, 0.35);
+            color: #ffffff;
+        }
+
+        .gfb-modal .form-control::placeholder {
+            color: #637b8f;
+        }
+
+        /* Modal Banner for Intercepted Action */
+        .auth-intent-banner {
+            background: rgba(223, 171, 87, 0.12);
+            border: 1px solid rgba(223, 171, 87, 0.3);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            color: #ebd2aa;
+        }
+
+        .auth-intent-banner .banner-icon {
+            font-size: 20px;
+            color: #dfab57;
+            flex-shrink: 0;
+        }
+
+        /* Demo Quick-Login Pill */
+        .demo-quick-login {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px dashed rgba(223, 171, 87, 0.35);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            margin-top: 18px;
+        }
+
+        .demo-quick-login p {
+            font-size: 11px;
+            color: #9cb1c2;
+            margin-bottom: 8px;
+        }
+
+        .btn-demo-pill {
+            background: transparent;
+            border: 1px solid #dfab57;
+            color: #dfab57;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-demo-pill:hover {
+            background: #dfab57;
+            color: #0b1723;
+        }
+
+        /* Profile Tabs in Profile Modal */
+        .profile-nav-pills {
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+        }
+
+        .profile-pill-btn {
+            background: transparent;
+            border: none;
+            color: #8fa6b8;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .profile-pill-btn.active {
+            background: rgba(223, 171, 87, 0.15);
+            color: #dfab57;
+        }
+
+        .order-card {
+            background: rgba(20, 40, 59, 0.7);
+            border: 1px solid rgba(223, 171, 87, 0.2);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 12px;
+            transition: border-color 0.2s;
+        }
+
+        .order-card:hover {
+            border-color: rgba(223, 171, 87, 0.45);
+        }
+
+        .order-status-badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .order-status-badge.confirmed {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .order-status-badge.pending {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        /* Toast Notifications */
+        .gfb-toast-container {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .gfb-toast {
+            background: #0d1e2e;
+            border: 1px solid #dfab57;
+            border-left: 4px solid #dfab57;
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12.5px;
+            pointer-events: auto;
+            transform: translateX(120%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gfb-toast.show {
+            transform: translateX(0);
+        }
+
+        .gfb-toast-icon {
+            font-size: 18px;
+            color: #dfab57;
+        }
+
     </style>
 </head>
 
@@ -1809,7 +2196,14 @@
                     <li class="nav-item"><a class="nav-link" href="#story">How It Works</a></li>
                     <li class="nav-item"><a class="nav-link" href="#installation">Installation</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
-                    <li class="nav-item ms-lg-3"><a class="btn btn-bronze" href="#contact">Book a Demo ↗</a></li>
+                    <li class="nav-item ms-lg-2" id="navAuthSlot">
+                        <!-- Dynamic Auth Button injected by JS -->
+                        <button class="auth-nav-btn" id="openAuthBtn" type="button" aria-label="Sign in or register">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <span>Sign In</span>
+                        </button>
+                    </li>
+                    <li class="nav-item ms-lg-2"><a class="btn btn-bronze gfb-buy-trigger" href="#contact">Book a Demo ↗</a></li>
                 </ul>
             </div>
         </div>
@@ -2880,7 +3274,672 @@
         draw();
         if ('IntersectionObserver' in window) { const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target) } }), { threshold: .08 }); document.querySelectorAll('.reveal').forEach(e => io.observe(e)) } else document.querySelectorAll('.reveal').forEach(e => e.classList.add('visible'));
         document.getElementById('backTop').addEventListener('click', () => scrollTo({ top: 0, behavior: reduced.matches ? 'instant' : 'smooth' })); document.querySelectorAll('[data-audience]').forEach(a => a.addEventListener('click', () => document.getElementById('type').value = a.dataset.audience)); const phone = document.getElementById('phone'); function validatePhone() { phone.setCustomValidity(/^\+?[1-9]\d{9,14}$/.test(phone.value.replace(/[\s().-]/g, '')) ? '' : 'Enter 10–15 digits; a country code is optional.') } phone.addEventListener('input', validatePhone); document.getElementById('enquiry').addEventListener('submit', e => { e.preventDefault(); validatePhone(); if (!e.target.reportValidity()) return; document.getElementById('status').textContent = 'Demo fields are valid. Nothing was sent or stored. Connect a secure enquiry service before launch.' }); if (window.bootstrap) { document.querySelectorAll('#mainNav a').forEach(a => a.addEventListener('click', () => { const n = document.getElementById('mainNav'); if (n.classList.contains('show')) bootstrap.Collapse.getOrCreateInstance(n).hide() })) } else { const warning = document.createElement('div'); warning.className = 'fallback-note'; warning.setAttribute('role', 'status'); warning.textContent = 'Bootstrap did not load. Connect to the internet to enable framework styling, mobile navigation, and FAQ controls.'; document.body.prepend(warning) }
+    
+    /* =========================================================
+       GFB AUTHENTICATION & USER PROFILE MANAGEMENT ENGINE
+       ========================================================= */
+    const AuthManager = {
+        STORAGE_KEY: 'gfb_user_profile',
+        ORDERS_KEY: 'gfb_user_orders',
+        pendingIntent: null,
+
+        // Initialize user session
+        getUser() {
+            try {
+                const data = localStorage.getItem(this.STORAGE_KEY);
+                return data ? JSON.parse(data) : null;
+            } catch (e) {
+                return null;
+            }
+        },
+
+        isLoggedIn() {
+            return this.getUser() !== null;
+        },
+
+        saveUser(user) {
+            localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
+            this.syncNavbar();
+            this.populateFormFields();
+        },
+
+        signOut() {
+            localStorage.removeItem(this.STORAGE_KEY);
+            this.syncNavbar();
+            bootstrap.Modal.getInstance(document.getElementById('gfbProfileModal'))?.hide();
+            AuthUI.showToast('👋 You have been signed out successfully.', 'info');
+        },
+
+        getOrders() {
+            try {
+                const data = localStorage.getItem(this.ORDERS_KEY);
+                if (data) return JSON.parse(data);
+            } catch (e) {}
+            // Default demo booking
+            return [
+                {
+                    id: 'GFB-DEMO-8492',
+                    model: 'GFB Smart Bio-Grind Disposer (Pro Home Edition)',
+                    type: 'Under-Sink On-Site Demonstration',
+                    date: 'Scheduled for tomorrow, 3:00 PM',
+                    status: 'confirmed',
+                    statusText: 'Technician Assigned',
+                    address: 'Chennai, Tamil Nadu'
+                }
+            ];
+        },
+
+        saveOrder(order) {
+            const orders = this.getOrders();
+            orders.unshift(order);
+            localStorage.setItem(this.ORDERS_KEY, JSON.stringify(orders));
+        },
+
+        simulateNewBooking() {
+            bootstrap.Modal.getInstance(document.getElementById('gfbProfileModal'))?.hide();
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+                AuthUI.showToast('📍 Selected assessment form below. Pre-filled with your details!', 'success');
+            }
+        },
+
+        syncNavbar() {
+            const slot = document.getElementById('navAuthSlot');
+            if (!slot) return;
+            const user = this.getUser();
+
+            if (user) {
+                const initial = (user.name || 'User').charAt(0).toUpperCase();
+                slot.innerHTML = `
+                    <div class="dropdown">
+                        <button class="profile-badge-btn dropdown-toggle" type="button" id="userProfileDropdownBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="profile-avatar">${initial}</div>
+                            <span>${user.name.split(' ')[0]}</span>
+                            <span class="profile-chevron">▼</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end gfb-profile-dropdown" aria-labelledby="userProfileDropdownBtn">
+                            <li class="dropdown-user-header">
+                                <div class="dropdown-user-name">${user.name}</div>
+                                <div class="dropdown-user-email">${user.email}</div>
+                                <span class="dropdown-user-badge">${(user.kitchenType || 'MEMBER').toUpperCase()}</span>
+                            </li>
+                            <li><a class="dropdown-item gfb-dropdown-item" href="javascript:void(0)" onclick="ProfileUI.openModal('personal')">
+                                <span>👤</span> My Profile &amp; Settings
+                            </a></li>
+                            <li><a class="dropdown-item gfb-dropdown-item" href="javascript:void(0)" onclick="ProfileUI.openModal('orders')">
+                                <span>📦</span> My Orders &amp; Bookings
+                            </a></li>
+                            <li><a class="dropdown-item gfb-dropdown-item" href="javascript:void(0)" onclick="ProfileUI.openModal('kitchen')">
+                                <span>🍳</span> Kitchen Specifications
+                            </a></li>
+                            <li><hr class="dropdown-divider" style="border-color: rgba(255,255,255,0.1);"></li>
+                            <li><a class="dropdown-item gfb-dropdown-item text-danger" href="javascript:void(0)" onclick="AuthManager.signOut()">
+                                <span>🚪</span> Sign Out
+                            </a></li>
+                        </ul>
+                    </div>
+                `;
+            } else {
+                slot.innerHTML = `
+                    <button class="auth-nav-btn" id="openAuthBtn" type="button" onclick="AuthUI.openModal(null)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        <span>Sign In</span>
+                    </button>
+                `;
+            }
+        },
+
+        populateFormFields() {
+            const user = this.getUser();
+            if (!user) return;
+            const cityInput = document.getElementById('city');
+            const typeSelect = document.getElementById('type');
+            if (cityInput && user.city && !cityInput.value) {
+                cityInput.value = user.city;
+            }
+            if (typeSelect && user.kitchenType && !typeSelect.value) {
+                typeSelect.value = user.kitchenType;
+            }
+        }
+    };
+
+    const AuthUI = {
+        openModal(intent = null) {
+            AuthManager.pendingIntent = intent;
+            const banner = document.getElementById('authIntentBanner');
+            if (intent) {
+                banner.classList.remove('d-none');
+                document.getElementById('authIntentTitle').textContent = intent.title || 'Sign In Required';
+                document.getElementById('authIntentSubtitle').textContent = intent.subtitle || 'Please sign in or create an account to proceed with your booking.';
+            } else {
+                banner.classList.add('d-none');
+            }
+            this.switchTab('signin');
+            const modalEl = document.getElementById('gfbAuthModal');
+            bootstrap.Modal.getOrCreateInstance(modalEl).show();
+        },
+
+        switchTab(tab) {
+            const signInTab = document.getElementById('tabSignInBtn');
+            const signUpTab = document.getElementById('tabSignUpBtn');
+            const signInForm = document.getElementById('signInForm');
+            const signUpForm = document.getElementById('signUpForm');
+
+            if (tab === 'signin') {
+                signInTab.classList.add('active');
+                signUpTab.classList.remove('active');
+                signInForm.classList.remove('d-none');
+                signUpForm.classList.add('d-none');
+            } else {
+                signUpTab.classList.add('active');
+                signInTab.classList.remove('active');
+                signUpForm.classList.remove('d-none');
+                signInForm.classList.add('d-none');
+            }
+        },
+
+        handleSignIn(e) {
+            e.preventDefault();
+            const identifier = document.getElementById('signInEmail').value.trim();
+            const pass = document.getElementById('signInPass').value.trim();
+
+            if (!identifier || !pass) {
+                this.showToast('⚠️ Please enter your email and password.', 'warning');
+                return;
+            }
+
+            // Look up existing user or construct profile
+            let user = AuthManager.getUser();
+            if (!user || (user.email !== identifier && user.phone !== identifier)) {
+                user = {
+                    name: identifier.split('@')[0] || 'Ganeshan M',
+                    email: identifier.includes('@') ? identifier : 'ganeshan1829@gmail.com',
+                    phone: !identifier.includes('@') ? identifier : '+91 98401 23456',
+                    city: 'Chennai, 600001',
+                    kitchenType: 'Home / apartment',
+                    address: 'No. 42, Green Avenue, Anna Nagar, Chennai',
+                    drainSize: 'Standard 3.5 inches (90mm)',
+                    power: '16A standard 3-pin socket available',
+                    memberSince: 'October 2026'
+                };
+            }
+
+            AuthManager.saveUser(user);
+            bootstrap.Modal.getInstance(document.getElementById('gfbAuthModal'))?.hide();
+            this.showToast(`✨ Welcome back, ${user.name}!`, 'success');
+
+            // Fulfill pending buy/booking intent
+            this.executePendingIntent();
+        },
+
+        handleSignUp(e) {
+            e.preventDefault();
+            const name = document.getElementById('signUpName').value.trim();
+            const phone = document.getElementById('signUpPhone').value.trim();
+            const email = document.getElementById('signUpEmail').value.trim();
+            const kitchenType = document.getElementById('signUpKitchenType').value;
+            const city = document.getElementById('signUpCity').value.trim() || 'Chennai, 600001';
+
+            if (!name || !phone || !email) {
+                this.showToast('⚠️ Please fill in all required fields.', 'warning');
+                return;
+            }
+
+            const newUser = {
+                name,
+                phone,
+                email,
+                kitchenType,
+                city,
+                address: '',
+                drainSize: 'Standard 3.5 inches (90mm)',
+                power: '16A standard 3-pin socket available',
+                memberSince: 'October 2026'
+            };
+
+            AuthManager.saveUser(newUser);
+            bootstrap.Modal.getInstance(document.getElementById('gfbAuthModal'))?.hide();
+            this.showToast(`🎉 Account created! Welcome to Garbo Free Bharat, ${name}.`, 'success');
+
+            // Fulfill pending buy/booking intent
+            this.executePendingIntent();
+        },
+
+        quickDemoLogin() {
+            const demoUser = {
+                name: 'Ganeshan M',
+                email: 'ganeshanmani.me1@gmail.com',
+                phone: '+91 98765 43210',
+                city: 'Chennai, 600001',
+                kitchenType: 'Home / apartment',
+                address: 'Plot 18, 4th Main Road, Gandhi Nagar, Chennai - 600020',
+                drainSize: 'Standard 3.5 inches (90mm)',
+                power: '16A standard 3-pin socket available',
+                memberSince: 'October 2026'
+            };
+            AuthManager.saveUser(demoUser);
+            bootstrap.Modal.getInstance(document.getElementById('gfbAuthModal'))?.hide();
+            this.showToast('⚡ Instant Demo Login activated as Ganeshan M!', 'success');
+            this.executePendingIntent();
+        },
+
+        forgotPassword() {
+            this.showToast('🔑 Password reset link simulated. Please check demo inbox or use 1-Click Demo Login.', 'info');
+        },
+
+        executePendingIntent() {
+            if (!AuthManager.pendingIntent) return;
+            const intent = AuthManager.pendingIntent;
+            AuthManager.pendingIntent = null;
+
+            if (intent.action === 'book_demo') {
+                const target = document.getElementById('contact');
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    AuthManager.populateFormFields();
+                    this.showToast('📋 Assessment form pre-filled with your profile. Ready to submit!', 'success');
+                }
+            } else if (intent.action === 'submit_assessment') {
+                const form = document.getElementById('enquiry');
+                if (form) {
+                    const status = document.getElementById('status');
+                    if (status) {
+                        status.textContent = 'Assessment request booked under your profile! A technician will contact you.';
+                        status.style.color = '#34d399';
+                    }
+                    AuthManager.saveOrder({
+                        id: 'GFB-' + Math.floor(1000 + Math.random() * 9000),
+                        model: 'GFB Smart Bio-Grind Assessment',
+                        type: 'Kitchen Assessment & Demo Booking',
+                        date: 'Submitted just now',
+                        status: 'pending',
+                        statusText: 'Under Review',
+                        address: document.getElementById('city')?.value || 'Chennai'
+                    });
+                    this.showToast('✓ Demo assessment booked and logged in your profile!', 'success');
+                }
+            }
+        },
+
+        showToast(message, type = 'success') {
+            const container = document.getElementById('gfbToastContainer');
+            if (!container) return;
+            const toast = document.createElement('div');
+            toast.className = 'gfb-toast';
+            const icon = type === 'success' ? '✓' : (type === 'warning' ? '⚠️' : 'ℹ️');
+            toast.innerHTML = `<span class="gfb-toast-icon">${icon}</span><div>${message}</div>`;
+            container.appendChild(toast);
+
+            requestAnimationFrame(() => toast.classList.add('show'));
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 3800);
+        }
+    };
+
+    const ProfileUI = {
+        openModal(tab = 'personal') {
+            const user = AuthManager.getUser();
+            if (!user) {
+                AuthUI.openModal();
+                return;
+            }
+
+            const initial = (user.name || 'U').charAt(0).toUpperCase();
+            document.getElementById('modalProfileAvatar').textContent = initial;
+            document.getElementById('modalProfileName').textContent = user.name;
+            document.getElementById('modalProfileBadge').textContent = (user.kitchenType || 'MEMBER').toUpperCase();
+
+            // Populate fields
+            document.getElementById('profName').value = user.name || '';
+            document.getElementById('profPhone').value = user.phone || '';
+            document.getElementById('profEmail').value = user.email || '';
+            document.getElementById('profCity').value = user.city || '';
+            document.getElementById('profAddress').value = user.address || '';
+            document.getElementById('profKitchenType').value = user.kitchenType || 'Home / apartment';
+            document.getElementById('profDrainSize').value = user.drainSize || 'Standard 3.5 inches (90mm)';
+            document.getElementById('profPower').value = user.power || '16A standard 3-pin socket available';
+
+            this.renderOrders();
+            this.switchPill(tab);
+            bootstrap.Modal.getOrCreateInstance(document.getElementById('gfbProfileModal')).show();
+        },
+
+        switchPill(pill) {
+            const pillPersonal = document.getElementById('pillPersonalBtn');
+            const pillKitchen = document.getElementById('pillKitchenBtn');
+            const pillOrders = document.getElementById('pillOrdersBtn');
+            const formPersonal = document.getElementById('profilePersonalForm');
+            const formKitchen = document.getElementById('profileKitchenForm');
+            const listOrders = document.getElementById('profileOrdersList');
+
+            [pillPersonal, pillKitchen, pillOrders].forEach(b => b.classList.remove('active'));
+            [formPersonal, formKitchen, listOrders].forEach(f => f.classList.add('d-none'));
+
+            if (pill === 'personal') {
+                pillPersonal.classList.add('active');
+                formPersonal.classList.remove('d-none');
+            } else if (pill === 'kitchen') {
+                pillKitchen.classList.add('active');
+                formKitchen.classList.remove('d-none');
+            } else if (pill === 'orders') {
+                pillOrders.classList.add('active');
+                listOrders.classList.remove('d-none');
+                this.renderOrders();
+            }
+        },
+
+        savePersonal(e) {
+            e.preventDefault();
+            const user = AuthManager.getUser() || {};
+            user.name = document.getElementById('profName').value.trim();
+            user.phone = document.getElementById('profPhone').value.trim();
+            user.email = document.getElementById('profEmail').value.trim();
+            user.city = document.getElementById('profCity').value.trim();
+            user.address = document.getElementById('profAddress').value.trim();
+
+            AuthManager.saveUser(user);
+            AuthUI.showToast('✓ Personal details saved successfully!', 'success');
+            bootstrap.Modal.getInstance(document.getElementById('gfbProfileModal'))?.hide();
+        },
+
+        saveKitchen(e) {
+            e.preventDefault();
+            const user = AuthManager.getUser() || {};
+            user.kitchenType = document.getElementById('profKitchenType').value;
+            user.drainSize = document.getElementById('profDrainSize').value;
+            user.power = document.getElementById('profPower').value;
+
+            AuthManager.saveUser(user);
+            AuthUI.showToast('🍳 Kitchen specifications saved!', 'success');
+            bootstrap.Modal.getInstance(document.getElementById('gfbProfileModal'))?.hide();
+        },
+
+        renderOrders() {
+            const container = document.getElementById('ordersContainer');
+            if (!container) return;
+            const orders = AuthManager.getOrders();
+            if (orders.length === 0) {
+                container.innerHTML = '<div class="text-center py-4" style="color:#8fa6b8;">No bookings or orders recorded yet.</div>';
+                return;
+            }
+
+            container.innerHTML = orders.map(ord => `
+                <div class="order-card">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <div>
+                            <span class="text-muted" style="font-size: 10px; font-weight: 700; letter-spacing: 0.5px;">${ord.id}</span>
+                            <h6 class="text-white mb-0" style="font-size: 13px; font-weight: 700;">${ord.model}</h6>
+                        </div>
+                        <span class="order-status-badge ${ord.status}">${ord.statusText}</span>
+                    </div>
+                    <div style="font-size: 11.5px; color: #a5b9c7; line-height: 1.5;">
+                        <div>📍 ${ord.address || 'Chennai Site'}</div>
+                        <div>🕒 ${ord.date}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+    };
+
+    // Intercept buy / booking actions so login is required before buying or booking
+    function setupPurchaseInterceptors() {
+        // 1. All Book Demo / Buy buttons
+        document.querySelectorAll('a[href="#contact"], .mobile-cta, .gfb-buy-trigger').forEach(el => {
+            el.addEventListener('click', function(e) {
+                if (!AuthManager.isLoggedIn()) {
+                    e.preventDefault();
+                    AuthUI.openModal({
+                        action: 'book_demo',
+                        title: 'Sign In to Book a Demo',
+                        subtitle: 'Please sign in or create your account to proceed with site assessment or machine purchase.'
+                    });
+                }
+            });
+        });
+
+        // 2. Intercept Contact Assessment Form submission
+        const enquiryForm = document.getElementById('enquiry');
+        if (enquiryForm) {
+            enquiryForm.addEventListener('submit', function(e) {
+                if (!AuthManager.isLoggedIn()) {
+                    e.preventDefault();
+                    AuthUI.openModal({
+                        action: 'submit_assessment',
+                        title: 'Confirm Your Identity to Book',
+                        subtitle: 'Please sign in or create an account so we can link this booking to your profile.'
+                    });
+                }
+            }, true); // capture phase
+        }
+
+        // Initialize state on load
+        AuthManager.syncNavbar();
+        AuthManager.populateFormFields();
+    }
+
+    // Run setup after DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupPurchaseInterceptors);
+    } else {
+        setupPurchaseInterceptors();
+    }
+
     </script>
+
+    <!-- ==================== GFB SIGN IN / SIGN UP MODAL ==================== -->
+    <div class="modal fade gfb-modal" id="gfbAuthModal" tabindex="-1" aria-labelledby="gfbAuthModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="gfbAuthModalLabel">
+                        <img src="gfb_logo_transparent.png" alt="GFB" style="height: 28px; width: auto;">
+                        <span>Member Access</span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contextual Banner when triggered by Buy/Book action -->
+                    <div class="auth-intent-banner d-none" id="authIntentBanner">
+                        <div class="banner-icon">🔒</div>
+                        <div>
+                            <strong class="d-block text-white" id="authIntentTitle">Sign in to complete your request</strong>
+                            <span id="authIntentSubtitle">Create or log in to your GFB account before booking a demo or placing an order.</span>
+                        </div>
+                    </div>
+
+                    <!-- Sign In / Sign Up Tabs -->
+                    <div class="gfb-tabs" role="tablist">
+                        <button type="button" class="gfb-tab-btn active" id="tabSignInBtn" onclick="AuthUI.switchTab('signin')">Sign In</button>
+                        <button type="button" class="gfb-tab-btn" id="tabSignUpBtn" onclick="AuthUI.switchTab('signup')">Create Account</button>
+                    </div>
+
+                    <!-- SIGN IN FORM -->
+                    <form id="signInForm" onsubmit="AuthUI.handleSignIn(event)">
+                        <div class="mb-3">
+                            <label class="form-label" for="signInEmail">Email or Mobile Number</label>
+                            <input type="text" class="form-control" id="signInEmail" placeholder="e.g. ganeshan@example.com or 9876543210" required autocomplete="username">
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <label class="form-label mb-0" for="signInPass">Password</label>
+                                <a href="javascript:void(0)" onclick="AuthUI.forgotPassword()" style="font-size: 10.5px; color: #dfab57; text-decoration: none;">Forgot?</a>
+                            </div>
+                            <input type="password" class="form-control" id="signInPass" placeholder="Enter password" required autocomplete="current-password">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe" checked>
+                            <label class="form-check-label" for="rememberMe" style="font-size: 11px; color: #9cb1c2;">Keep me signed in</label>
+                        </div>
+                        <button type="submit" class="btn btn-bronze w-100 py-2" id="signInSubmitBtn">
+                            Sign In &amp; Proceed ↗
+                        </button>
+                    </form>
+
+                    <!-- SIGN UP FORM -->
+                    <form id="signUpForm" class="d-none" onsubmit="AuthUI.handleSignUp(event)">
+                        <div class="row g-2 mb-2">
+                            <div class="col-sm-6">
+                                <label class="form-label" for="signUpName">Full Name *</label>
+                                <input type="text" class="form-control" id="signUpName" placeholder="Your full name" required autocomplete="name">
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label" for="signUpPhone">Mobile Number *</label>
+                                <input type="tel" class="form-control" id="signUpPhone" placeholder="+91 9876543210" required autocomplete="tel">
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="signUpEmail">Email Address *</label>
+                            <input type="email" class="form-control" id="signUpEmail" placeholder="yourname@gmail.com" required autocomplete="email">
+                        </div>
+                        <div class="row g-2 mb-2">
+                            <div class="col-sm-6">
+                                <label class="form-label" for="signUpKitchenType">Kitchen Type</label>
+                                <select class="form-select" id="signUpKitchenType">
+                                    <option value="Home / apartment">Home / Apartment</option>
+                                    <option value="Hotel / restaurant">Hotel / Restaurant</option>
+                                    <option value="Cloud kitchen / canteen">Cloud Kitchen / Canteen</option>
+                                    <option value="Other">Other Commercial</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label" for="signUpCity">City / Location</label>
+                                <input type="text" class="form-control" id="signUpCity" placeholder="e.g. Chennai, 600001">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="signUpPass">Create Password *</label>
+                            <input type="password" class="form-control" id="signUpPass" placeholder="At least 6 characters" required autocomplete="new-password" minlength="6">
+                        </div>
+                        <button type="submit" class="btn btn-bronze w-100 py-2">
+                            Create Account &amp; Continue ↗
+                        </button>
+                    </form>
+
+                    <!-- Quick 1-Click Demo Testing Pill -->
+                    <div class="demo-quick-login">
+                        <p>Testing as reviewer? Use instant demo access:</p>
+                        <button type="button" class="btn-demo-pill" onclick="AuthUI.quickDemoLogin()">⚡ 1-Click Instant Demo Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== GFB USER PROFILE MANAGEMENT MODAL ==================== -->
+    <div class="modal fade gfb-modal" id="gfbProfileModal" tabindex="-1" aria-labelledby="gfbProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="profile-avatar" id="modalProfileAvatar" style="width: 44px; height: 44px; font-size: 17px;">G</div>
+                        <div>
+                            <h5 class="modal-title mb-0" id="modalProfileName">User Profile</h5>
+                            <span class="dropdown-user-badge" id="modalProfileBadge">VERIFIED MEMBER</span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Profile Navigation Pills -->
+                    <div class="profile-nav-pills" role="tablist">
+                        <button type="button" class="profile-pill-btn active" id="pillPersonalBtn" onclick="ProfileUI.switchPill('personal')">👤 Personal Details</button>
+                        <button type="button" class="profile-pill-btn" id="pillKitchenBtn" onclick="ProfileUI.switchPill('kitchen')">🍳 Kitchen Specs</button>
+                        <button type="button" class="profile-pill-btn" id="pillOrdersBtn" onclick="ProfileUI.switchPill('orders')">📦 Orders &amp; Bookings</button>
+                    </div>
+
+                    <!-- TAB 1: PERSONAL DETAILS -->
+                    <form id="profilePersonalForm" onsubmit="ProfileUI.savePersonal(event)">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label" for="profName">Full Name</label>
+                                <input type="text" class="form-control" id="profName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="profPhone">Mobile Number</label>
+                                <input type="tel" class="form-control" id="profPhone" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="profEmail">Email Address</label>
+                                <input type="email" class="form-control" id="profEmail" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="profCity">City &amp; Pincode</label>
+                                <input type="text" class="form-control" id="profCity" placeholder="e.g. Chennai, 600001">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label" for="profAddress">Installation / Delivery Address</label>
+                                <textarea class="form-control" id="profAddress" rows="2" placeholder="House/Flat No., Apartment, Street, Area"></textarea>
+                            </div>
+                            <div class="col-12 d-flex justify-content-between align-items-center mt-4">
+                                <button type="button" class="btn btn-outline-danger btn-sm" onclick="AuthManager.signOut()">Sign Out of Account</button>
+                                <button type="submit" class="btn btn-bronze">Save Profile Changes ✓</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- TAB 2: KITCHEN SPECS -->
+                    <form id="profileKitchenForm" class="d-none" onsubmit="ProfileUI.saveKitchen(event)">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label" for="profKitchenType">Primary Kitchen Type</label>
+                                <select class="form-select" id="profKitchenType">
+                                    <option value="Home / apartment">Home / Apartment</option>
+                                    <option value="Hotel / restaurant">Hotel / Restaurant</option>
+                                    <option value="Cloud kitchen / canteen">Cloud Kitchen / Canteen</option>
+                                    <option value="Other">Other Commercial</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="profDrainSize">Sink Drain Opening</label>
+                                <select class="form-select" id="profDrainSize">
+                                    <option value="Standard 3.5 inches (90mm)">Standard 3.5 inches (90mm) - Plug &amp; Play</option>
+                                    <option value="Small 3.0 inches">Small 3.0 inches (Adapter required)</option>
+                                    <option value="Commercial 4.0+ inches">Commercial 4.0+ inches</option>
+                                    <option value="Unsure / Need site assessment">Unsure / Need site assessment</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="profPower">Under-Sink Power Point</label>
+                                <select class="form-select" id="profPower">
+                                    <option value="16A standard 3-pin socket available">16A standard 3-pin socket available</option>
+                                    <option value="Socket nearby / extension">Socket nearby / extension</option>
+                                    <option value="Electrician wiring needed">Electrician wiring needed</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="profUnderSinkSpace">Under-Sink Clearance</label>
+                                <select class="form-select" id="profUnderSinkSpace">
+                                    <option value="Ample space (>45cm height)">Ample space (>45cm height)</option>
+                                    <option value="Compact space (RO/filter installed)">Compact space (RO / water filter installed)</option>
+                                </select>
+                            </div>
+                            <div class="col-12 text-end mt-4">
+                                <button type="submit" class="btn btn-bronze">Update Kitchen Profile ✓</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- TAB 3: ORDERS & BOOKINGS -->
+                    <div id="profileOrdersList" class="d-none">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-white fw-bold" style="font-size: 13px;">Your Machine Orders &amp; Demo Appointments</span>
+                            <button type="button" class="btn btn-outline-light btn-sm" onclick="AuthManager.simulateNewBooking()" style="font-size: 11px; border-color: rgba(223, 171, 87, 0.4); color: #dfab57;">+ Book Another Demo</button>
+                        </div>
+                        <div id="ordersContainer">
+                            <!-- Injected dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="gfb-toast-container" id="gfbToastContainer"></div>
+
 </body>
 
 </html>
