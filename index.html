@@ -1752,6 +1752,152 @@
 
     
         /* === GFB AUTH & USER PROFILE SYSTEM === */
+
+        /* === GOOGLE SIGN IN & OTP VERIFICATION UI === */
+        .btn-google-auth {
+            width: 100%;
+            background: #ffffff;
+            color: #1f2937 !important;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 18px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+        }
+
+        .btn-google-auth:hover {
+            background: #f8fafc;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+            color: #111827 !important;
+        }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 18px 0;
+            color: #71889c;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .auth-divider::before, .auth-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .auth-divider span {
+            padding: 0 12px;
+        }
+
+        /* OTP Input Blocks */
+        .otp-input-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 18px 0;
+        }
+
+        .otp-field {
+            width: 52px;
+            height: 56px;
+            background: #14283b;
+            border: 1.5px solid rgba(223, 171, 87, 0.3);
+            border-radius: 12px;
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            color: #ffffff;
+            transition: all 0.2s ease;
+        }
+
+        .otp-field:focus {
+            background: #1a344d;
+            border-color: #dfab57;
+            box-shadow: 0 0 15px rgba(223, 171, 87, 0.4);
+            outline: none;
+        }
+
+        .otp-countdown {
+            font-size: 12px;
+            color: #9cb1c2;
+            text-align: center;
+        }
+
+        .otp-resend-btn {
+            background: none;
+            border: none;
+            color: #dfab57;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0;
+        }
+
+        .otp-resend-btn:disabled {
+            color: #5d7589;
+            text-decoration: none;
+            cursor: not-allowed;
+        }
+
+        /* Mobile number input group */
+        .phone-input-wrap {
+            display: flex;
+            gap: 8px;
+        }
+
+        .phone-prefix {
+            background: #14283b;
+            border: 1px solid rgba(223, 171, 87, 0.25);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #dfab57;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .verified-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 10.5px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .unverified-badge {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 10.5px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
         .auth-nav-btn {
             background: rgba(223, 171, 87, 0.12);
             border: 1px solid rgba(223, 171, 87, 0.4);
@@ -3276,14 +3422,13 @@
         document.getElementById('backTop').addEventListener('click', () => scrollTo({ top: 0, behavior: reduced.matches ? 'instant' : 'smooth' })); document.querySelectorAll('[data-audience]').forEach(a => a.addEventListener('click', () => document.getElementById('type').value = a.dataset.audience)); const phone = document.getElementById('phone'); function validatePhone() { phone.setCustomValidity(/^\+?[1-9]\d{9,14}$/.test(phone.value.replace(/[\s().-]/g, '')) ? '' : 'Enter 10–15 digits; a country code is optional.') } phone.addEventListener('input', validatePhone); document.getElementById('enquiry').addEventListener('submit', e => { e.preventDefault(); validatePhone(); if (!e.target.reportValidity()) return; document.getElementById('status').textContent = 'Demo fields are valid. Nothing was sent or stored. Connect a secure enquiry service before launch.' }); if (window.bootstrap) { document.querySelectorAll('#mainNav a').forEach(a => a.addEventListener('click', () => { const n = document.getElementById('mainNav'); if (n.classList.contains('show')) bootstrap.Collapse.getOrCreateInstance(n).hide() })) } else { const warning = document.createElement('div'); warning.className = 'fallback-note'; warning.setAttribute('role', 'status'); warning.textContent = 'Bootstrap did not load. Connect to the internet to enable framework styling, mobile navigation, and FAQ controls.'; document.body.prepend(warning) }
     
     /* =========================================================
-       GFB AUTHENTICATION & USER PROFILE MANAGEMENT ENGINE
+       GFB GOOGLE-FIRST AUTH & MOBILE OTP VERIFICATION ENGINE
        ========================================================= */
     const AuthManager = {
         STORAGE_KEY: 'gfb_user_profile',
         ORDERS_KEY: 'gfb_user_orders',
         pendingIntent: null,
 
-        // Initialize user session
         getUser() {
             try {
                 const data = localStorage.getItem(this.STORAGE_KEY);
@@ -3297,6 +3442,11 @@
             return this.getUser() !== null;
         },
 
+        isPhoneVerified() {
+            const user = this.getUser();
+            return !!(user && user.phone && user.isPhoneVerified);
+        },
+
         saveUser(user) {
             localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
             this.syncNavbar();
@@ -3307,7 +3457,7 @@
             localStorage.removeItem(this.STORAGE_KEY);
             this.syncNavbar();
             bootstrap.Modal.getInstance(document.getElementById('gfbProfileModal'))?.hide();
-            AuthUI.showToast('👋 You have been signed out successfully.', 'info');
+            AuthUI.showToast('👋 You have been signed out.', 'info');
         },
 
         getOrders() {
@@ -3315,7 +3465,6 @@
                 const data = localStorage.getItem(this.ORDERS_KEY);
                 if (data) return JSON.parse(data);
             } catch (e) {}
-            // Default demo booking
             return [
                 {
                     id: 'GFB-DEMO-8492',
@@ -3333,15 +3482,6 @@
             const orders = this.getOrders();
             orders.unshift(order);
             localStorage.setItem(this.ORDERS_KEY, JSON.stringify(orders));
-        },
-
-        simulateNewBooking() {
-            bootstrap.Modal.getInstance(document.getElementById('gfbProfileModal'))?.hide();
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-                AuthUI.showToast('📍 Selected assessment form below. Pre-filled with your details!', 'success');
-            }
         },
 
         syncNavbar() {
@@ -3362,7 +3502,9 @@
                             <li class="dropdown-user-header">
                                 <div class="dropdown-user-name">${user.name}</div>
                                 <div class="dropdown-user-email">${user.email}</div>
-                                <span class="dropdown-user-badge">${(user.kitchenType || 'MEMBER').toUpperCase()}</span>
+                                <div class="mt-1">
+                                    ${user.isPhoneVerified ? '<span class="verified-badge">✓ Phone Verified</span>' : '<span class="unverified-badge">⚠️ Phone Not Verified</span>'}
+                                </div>
                             </li>
                             <li><a class="dropdown-item gfb-dropdown-item" href="account.html" style="background: rgba(223, 171, 87, 0.15); color: #dfab57 !important; font-weight: 700 !important;">
                                 <span>🏢</span> <strong>Your Account Hub ↗</strong>
@@ -3416,156 +3558,98 @@
             const banner = document.getElementById('authIntentBanner');
             if (intent) {
                 banner.classList.remove('d-none');
-                document.getElementById('authIntentTitle').textContent = intent.title || 'Sign In Required';
-                document.getElementById('authIntentSubtitle').textContent = intent.subtitle || 'Please sign in or create an account to proceed with your booking.';
+                document.getElementById('authIntentTitle').textContent = intent.title || 'Sign In to Continue';
+                document.getElementById('authIntentSubtitle').textContent = intent.subtitle || 'Please sign in with Google to proceed with your booking.';
             } else {
                 banner.classList.add('d-none');
             }
-            this.switchTab('signin');
             const modalEl = document.getElementById('gfbAuthModal');
             bootstrap.Modal.getOrCreateInstance(modalEl).show();
         },
 
-        switchTab(tab) {
-            const signInTab = document.getElementById('tabSignInBtn');
-            const signUpTab = document.getElementById('tabSignUpBtn');
-            const signInForm = document.getElementById('signInForm');
-            const signUpForm = document.getElementById('signUpForm');
+        signInWithGoogle() {
+            // Realistic Google Sign In Simulation
+            const googleUser = {
+                name: 'Ganeshan Mani',
+                email: 'ganeshanmani.me1@gmail.com',
+                authProvider: 'Google',
+                avatar: 'G',
+                phone: null, // Phone added LATER when ordering/booking!
+                isPhoneVerified: false,
+                city: 'Chennai, 600001',
+                kitchenType: 'Home / apartment',
+                address: 'No. 42, Green Avenue, Anna Nagar, Chennai',
+                drainSize: 'Standard 3.5 inches (90mm)',
+                power: '16A standard 3-pin socket available',
+                memberSince: 'October 2026'
+            };
 
-            if (tab === 'signin') {
-                signInTab.classList.add('active');
-                signUpTab.classList.remove('active');
-                signInForm.classList.remove('d-none');
-                signUpForm.classList.add('d-none');
-            } else {
-                signUpTab.classList.add('active');
-                signInTab.classList.remove('active');
-                signUpForm.classList.remove('d-none');
-                signInForm.classList.add('d-none');
-            }
-        },
-
-        handleSignIn(e) {
-            e.preventDefault();
-            const identifier = document.getElementById('signInEmail').value.trim();
-            const pass = document.getElementById('signInPass').value.trim();
-
-            if (!identifier || !pass) {
-                this.showToast('⚠️ Please enter your email and password.', 'warning');
-                return;
-            }
-
-            // Look up existing user or construct profile
-            let user = AuthManager.getUser();
-            if (!user || (user.email !== identifier && user.phone !== identifier)) {
-                user = {
-                    name: identifier.split('@')[0] || 'Ganeshan M',
-                    email: identifier.includes('@') ? identifier : 'ganeshan1829@gmail.com',
-                    phone: !identifier.includes('@') ? identifier : '+91 98401 23456',
-                    city: 'Chennai, 600001',
-                    kitchenType: 'Home / apartment',
-                    address: 'No. 42, Green Avenue, Anna Nagar, Chennai',
-                    drainSize: 'Standard 3.5 inches (90mm)',
-                    power: '16A standard 3-pin socket available',
-                    memberSince: 'October 2026'
-                };
-            }
-
-            AuthManager.saveUser(user);
+            AuthManager.saveUser(googleUser);
             bootstrap.Modal.getInstance(document.getElementById('gfbAuthModal'))?.hide();
-            this.showToast(`✨ Welcome back, ${user.name}!`, 'success');
+            this.showToast('✓ Signed in with Google as Ganeshan Mani!', 'success');
 
-            // Fulfill pending buy/booking intent
-            this.executePendingIntent();
+            // Now check if there was a pending order/booking intent
+            this.handlePostSignInIntent();
         },
 
-        handleSignUp(e) {
+        handleEmailSignIn(e) {
             e.preventDefault();
-            const name = document.getElementById('signUpName').value.trim();
-            const phone = document.getElementById('signUpPhone').value.trim();
-            const email = document.getElementById('signUpEmail').value.trim();
-            const kitchenType = document.getElementById('signUpKitchenType').value;
-            const city = document.getElementById('signUpCity').value.trim() || 'Chennai, 600001';
+            const email = document.getElementById('signInEmail').value.trim();
+            if (!email) return;
 
-            if (!name || !phone || !email) {
-                this.showToast('⚠️ Please fill in all required fields.', 'warning');
-                return;
-            }
-
-            const newUser = {
-                name,
-                phone,
-                email,
-                kitchenType,
-                city,
+            const name = email.split('@')[0];
+            const user = {
+                name: name.charAt(0).toUpperCase() + name.slice(1),
+                email: email,
+                authProvider: 'Email',
+                avatar: name.charAt(0).toUpperCase(),
+                phone: null,
+                isPhoneVerified: false,
+                city: 'Chennai, 600001',
+                kitchenType: 'Home / apartment',
                 address: '',
                 drainSize: 'Standard 3.5 inches (90mm)',
                 power: '16A standard 3-pin socket available',
                 memberSince: 'October 2026'
             };
 
-            AuthManager.saveUser(newUser);
+            AuthManager.saveUser(user);
             bootstrap.Modal.getInstance(document.getElementById('gfbAuthModal'))?.hide();
-            this.showToast(`🎉 Account created! Welcome to Garbo Free Bharat, ${name}.`, 'success');
-
-            // Fulfill pending buy/booking intent
-            this.executePendingIntent();
+            this.showToast(`✓ Signed in as ${user.email}!`, 'success');
+            this.handlePostSignInIntent();
         },
 
-        quickDemoLogin() {
-            const demoUser = {
-                name: 'Ganeshan M',
-                email: 'ganeshanmani.me1@gmail.com',
-                phone: '+91 98765 43210',
-                city: 'Chennai, 600001',
-                kitchenType: 'Home / apartment',
-                address: 'Plot 18, 4th Main Road, Gandhi Nagar, Chennai - 600020',
-                drainSize: 'Standard 3.5 inches (90mm)',
-                power: '16A standard 3-pin socket available',
-                memberSince: 'October 2026'
-            };
-            AuthManager.saveUser(demoUser);
-            bootstrap.Modal.getInstance(document.getElementById('gfbAuthModal'))?.hide();
-            this.showToast('⚡ Instant Demo Login activated as Ganeshan M!', 'success');
-            this.executePendingIntent();
-        },
-
-        forgotPassword() {
-            this.showToast('🔑 Password reset link simulated. Please check demo inbox or use 1-Click Demo Login.', 'info');
-        },
-
-        executePendingIntent() {
+        handlePostSignInIntent() {
             if (!AuthManager.pendingIntent) return;
+            // Next: Check if mobile number is verified for the order!
+            if (!AuthManager.isPhoneVerified()) {
+                OtpManager.openModal(AuthManager.pendingIntent);
+            } else {
+                this.executeFinalOrder();
+            }
+        },
+
+        executeFinalOrder() {
             const intent = AuthManager.pendingIntent;
             AuthManager.pendingIntent = null;
 
-            if (intent.action === 'book_demo') {
-                const target = document.getElementById('contact');
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                    AuthManager.populateFormFields();
-                    this.showToast('📋 Assessment form pre-filled with your profile. Ready to submit!', 'success');
-                }
-            } else if (intent.action === 'submit_assessment') {
-                const form = document.getElementById('enquiry');
-                if (form) {
-                    const status = document.getElementById('status');
-                    if (status) {
-                        status.textContent = 'Assessment request booked under your profile! A technician will contact you.';
-                        status.style.color = '#34d399';
-                    }
-                    AuthManager.saveOrder({
-                        id: 'GFB-' + Math.floor(1000 + Math.random() * 9000),
-                        model: 'GFB Smart Bio-Grind Assessment',
-                        type: 'Kitchen Assessment & Demo Booking',
-                        date: 'Submitted just now',
-                        status: 'pending',
-                        statusText: 'Under Review',
-                        address: document.getElementById('city')?.value || 'Chennai'
-                    });
-                    this.showToast('✓ Demo assessment booked and logged in your profile!', 'success');
-                }
+            const target = document.getElementById('contact');
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+                AuthManager.populateFormFields();
             }
+
+            AuthManager.saveOrder({
+                id: 'GFB-ORD-' + Math.floor(1000 + Math.random() * 9000),
+                model: 'GFB Smart Bio-Grind Assessment & Live Kitchen Demo',
+                type: 'Verified On-Site Demo Appointment',
+                date: 'Confirmed for Tomorrow, 3:00 PM',
+                status: 'confirmed',
+                statusText: 'Technician Assigned',
+                address: AuthManager.getUser()?.city || 'Chennai Site'
+            });
+
+            this.showToast('🎉 Booking confirmed! Technician assigned. Check Your Account Hub to track.', 'success');
         },
 
         showToast(message, type = 'success') {
@@ -3585,128 +3669,135 @@
         }
     };
 
-    const ProfileUI = {
-        openModal(tab = 'personal') {
+    /* OTP Manager for Mobile Number Verification on Order */
+    const OtpManager = {
+        timerInterval: null,
+        targetPhone: '',
+
+        openModal(intent = null) {
+            document.getElementById('otpStepPhone').classList.remove('d-none');
+            document.getElementById('otpStepVerify').classList.add('d-none');
             const user = AuthManager.getUser();
-            if (!user) {
-                AuthUI.openModal();
+            if (user && user.phone) {
+                document.getElementById('orderMobileInput').value = user.phone.replace('+91 ', '');
+            }
+            bootstrap.Modal.getOrCreateInstance(document.getElementById('gfbOtpModal')).show();
+        },
+
+        sendOtp(e) {
+            if (e) e.preventDefault();
+            const phoneVal = document.getElementById('orderMobileInput').value.trim();
+            if (phoneVal.length !== 10) {
+                AuthUI.showToast('⚠️ Please enter a valid 10-digit mobile number.', 'warning');
                 return;
             }
 
-            const initial = (user.name || 'U').charAt(0).toUpperCase();
-            document.getElementById('modalProfileAvatar').textContent = initial;
-            document.getElementById('modalProfileName').textContent = user.name;
-            document.getElementById('modalProfileBadge').textContent = (user.kitchenType || 'MEMBER').toUpperCase();
+            this.targetPhone = '+91 ' + phoneVal;
+            document.getElementById('otpPhoneDisplay').textContent = this.targetPhone;
+            document.getElementById('otpStepPhone').classList.add('d-none');
+            document.getElementById('otpStepVerify').classList.remove('d-none');
 
-            // Populate fields
-            document.getElementById('profName').value = user.name || '';
-            document.getElementById('profPhone').value = user.phone || '';
-            document.getElementById('profEmail').value = user.email || '';
-            document.getElementById('profCity').value = user.city || '';
-            document.getElementById('profAddress').value = user.address || '';
-            document.getElementById('profKitchenType').value = user.kitchenType || 'Home / apartment';
-            document.getElementById('profDrainSize').value = user.drainSize || 'Standard 3.5 inches (90mm)';
-            document.getElementById('profPower').value = user.power || '16A standard 3-pin socket available';
-
-            this.renderOrders();
-            this.switchPill(tab);
-            bootstrap.Modal.getOrCreateInstance(document.getElementById('gfbProfileModal')).show();
+            // Reset and start countdown
+            this.startTimer(25);
+            AuthUI.showToast(`📩 OTP sent to ${this.targetPhone} (Demo code: 4826)`, 'info');
+            setTimeout(() => document.getElementById('otpDigit1').focus(), 150);
         },
 
-        switchPill(pill) {
-            const pillPersonal = document.getElementById('pillPersonalBtn');
-            const pillKitchen = document.getElementById('pillKitchenBtn');
-            const pillOrders = document.getElementById('pillOrdersBtn');
-            const formPersonal = document.getElementById('profilePersonalForm');
-            const formKitchen = document.getElementById('profileKitchenForm');
-            const listOrders = document.getElementById('profileOrdersList');
+        startTimer(seconds) {
+            clearInterval(this.timerInterval);
+            let rem = seconds;
+            const timerEl = document.getElementById('otpTimer');
+            const resendBtn = document.getElementById('otpResendBtn');
+            resendBtn.classList.add('d-none');
 
-            [pillPersonal, pillKitchen, pillOrders].forEach(b => b.classList.remove('active'));
-            [formPersonal, formKitchen, listOrders].forEach(f => f.classList.add('d-none'));
+            this.timerInterval = setInterval(() => {
+                rem--;
+                timerEl.textContent = rem;
+                if (rem <= 0) {
+                    clearInterval(this.timerInterval);
+                    resendBtn.classList.remove('d-none');
+                }
+            }, 1000);
+        },
 
-            if (pill === 'personal') {
-                pillPersonal.classList.add('active');
-                formPersonal.classList.remove('d-none');
-            } else if (pill === 'kitchen') {
-                pillKitchen.classList.add('active');
-                formKitchen.classList.remove('d-none');
-            } else if (pill === 'orders') {
-                pillOrders.classList.add('active');
-                listOrders.classList.remove('d-none');
-                this.renderOrders();
+        resendOtp() {
+            this.startTimer(25);
+            AuthUI.showToast('📩 New OTP sent: 4826', 'info');
+        },
+
+        backToPhone() {
+            clearInterval(this.timerInterval);
+            document.getElementById('otpStepVerify').classList.add('d-none');
+            document.getElementById('otpStepPhone').classList.remove('d-none');
+        },
+
+        focusNext(index) {
+            const current = document.getElementById('otpDigit' + index);
+            if (current.value && index < 4) {
+                document.getElementById('otpDigit' + (index + 1)).focus();
             }
         },
 
-        savePersonal(e) {
-            e.preventDefault();
-            const user = AuthManager.getUser() || {};
-            user.name = document.getElementById('profName').value.trim();
-            user.phone = document.getElementById('profPhone').value.trim();
-            user.email = document.getElementById('profEmail').value.trim();
-            user.city = document.getElementById('profCity').value.trim();
-            user.address = document.getElementById('profAddress').value.trim();
-
-            AuthManager.saveUser(user);
-            AuthUI.showToast('✓ Personal details saved successfully!', 'success');
-            bootstrap.Modal.getInstance(document.getElementById('gfbProfileModal'))?.hide();
+        autoFillDemoOtp() {
+            document.getElementById('otpDigit1').value = '4';
+            document.getElementById('otpDigit2').value = '8';
+            document.getElementById('otpDigit3').value = '2';
+            document.getElementById('otpDigit4').value = '6';
+            AuthUI.showToast('⚡ Demo OTP auto-filled. Click Verify & Confirm!', 'info');
         },
 
-        saveKitchen(e) {
-            e.preventDefault();
-            const user = AuthManager.getUser() || {};
-            user.kitchenType = document.getElementById('profKitchenType').value;
-            user.drainSize = document.getElementById('profDrainSize').value;
-            user.power = document.getElementById('profPower').value;
+        verifyOtp() {
+            const d1 = document.getElementById('otpDigit1').value;
+            const d2 = document.getElementById('otpDigit2').value;
+            const d3 = document.getElementById('otpDigit3').value;
+            const d4 = document.getElementById('otpDigit4').value;
+            const entered = d1 + d2 + d3 + d4;
 
-            AuthManager.saveUser(user);
-            AuthUI.showToast('🍳 Kitchen specifications saved!', 'success');
-            bootstrap.Modal.getInstance(document.getElementById('gfbProfileModal'))?.hide();
-        },
-
-        renderOrders() {
-            const container = document.getElementById('ordersContainer');
-            if (!container) return;
-            const orders = AuthManager.getOrders();
-            if (orders.length === 0) {
-                container.innerHTML = '<div class="text-center py-4" style="color:#8fa6b8;">No bookings or orders recorded yet.</div>';
+            if (entered.length < 4) {
+                AuthUI.showToast('⚠️ Please enter the complete 4-digit OTP.', 'warning');
                 return;
             }
 
-            container.innerHTML = orders.map(ord => `
-                <div class="order-card">
-                    <div class="d-flex justify-content-between align-items-start mb-2">
-                        <div>
-                            <span class="text-muted" style="font-size: 10px; font-weight: 700; letter-spacing: 0.5px;">${ord.id}</span>
-                            <h6 class="text-white mb-0" style="font-size: 13px; font-weight: 700;">${ord.model}</h6>
-                        </div>
-                        <span class="order-status-badge ${ord.status}">${ord.statusText}</span>
-                    </div>
-                    <div style="font-size: 11.5px; color: #a5b9c7; line-height: 1.5;">
-                        <div>📍 ${ord.address || 'Chennai Site'}</div>
-                        <div>🕒 ${ord.date}</div>
-                    </div>
-                </div>
-            `).join('');
+            // Save phone to user profile
+            const user = AuthManager.getUser() || {};
+            user.phone = this.targetPhone;
+            user.isPhoneVerified = true;
+            AuthManager.saveUser(user);
+
+            bootstrap.Modal.getInstance(document.getElementById('gfbOtpModal'))?.hide();
+            AuthUI.showToast('✓ Mobile number verified successfully!', 'success');
+
+            // Complete the order / booking!
+            AuthUI.executeFinalOrder();
         }
     };
 
-    // Intercept buy / booking actions so login is required before buying or booking
+    // Intercept buy / booking actions so Google login + Mobile OTP triggers before order
     function setupPurchaseInterceptors() {
-        // 1. All Book Demo / Buy buttons
         document.querySelectorAll('a[href="#contact"], .mobile-cta, .gfb-buy-trigger').forEach(el => {
             el.addEventListener('click', function(e) {
+                // 1. Not signed in? Prompt Google Login
                 if (!AuthManager.isLoggedIn()) {
                     e.preventDefault();
                     AuthUI.openModal({
                         action: 'book_demo',
                         title: 'Sign In to Book a Demo',
-                        subtitle: 'Please sign in or create your account to proceed with site assessment or machine purchase.'
+                        subtitle: 'Sign in with Google to continue with your kitchen demo booking.'
                     });
+                    return;
+                }
+
+                // 2. Signed in, but mobile not verified? Prompt Mobile OTP
+                if (!AuthManager.isPhoneVerified()) {
+                    e.preventDefault();
+                    AuthManager.pendingIntent = { action: 'book_demo' };
+                    OtpManager.openModal();
+                    return;
                 }
             });
         });
 
-        // 2. Intercept Contact Assessment Form submission
+        // Intercept Assessment Form
         const enquiryForm = document.getElementById('enquiry');
         if (enquiryForm) {
             enquiryForm.addEventListener('submit', function(e) {
@@ -3714,19 +3805,25 @@
                     e.preventDefault();
                     AuthUI.openModal({
                         action: 'submit_assessment',
-                        title: 'Confirm Your Identity to Book',
-                        subtitle: 'Please sign in or create an account so we can link this booking to your profile.'
+                        title: 'Sign In with Google to Submit',
+                        subtitle: 'Please sign in so we can link this booking to your profile.'
                     });
+                    return;
                 }
-            }, true); // capture phase
+
+                if (!AuthManager.isPhoneVerified()) {
+                    e.preventDefault();
+                    AuthManager.pendingIntent = { action: 'submit_assessment' };
+                    OtpManager.openModal();
+                    return;
+                }
+            }, true);
         }
 
-        // Initialize state on load
         AuthManager.syncNavbar();
         AuthManager.populateFormFields();
     }
 
-    // Run setup after DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', setupPurchaseInterceptors);
     } else {
@@ -3735,15 +3832,15 @@
 
     </script>
 
-    <!-- ==================== GFB SIGN IN / SIGN UP MODAL ==================== -->
+        <!-- ==================== GFB SIGN IN (GOOGLE-FIRST) MODAL ==================== -->
     <div class="modal fade gfb-modal" id="gfbAuthModal" tabindex="-1" aria-labelledby="gfbAuthModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="gfbAuthModalLabel">
-                        <img src="gfb_logo_transparent.png" alt="GFB" style="height: 28px; width: auto;">
-                        <span>Member Access</span>
-                    </h5>
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="gfb_logo_transparent.png" alt="GFB" style="height: 30px; width: auto;">
+                        <span class="text-white fw-bold" style="font-size: 16px;">Member Access</span>
+                    </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -3751,83 +3848,104 @@
                     <div class="auth-intent-banner d-none" id="authIntentBanner">
                         <div class="banner-icon">🔒</div>
                         <div>
-                            <strong class="d-block text-white" id="authIntentTitle">Sign in to complete your request</strong>
-                            <span id="authIntentSubtitle">Create or log in to your GFB account before booking a demo or placing an order.</span>
+                            <strong class="d-block text-white" id="authIntentTitle">Sign In to Continue Your Order</strong>
+                            <span id="authIntentSubtitle" style="font-size: 11.5px; color: #dbe5ee;">Sign in with Google to book your demo or customize machine installation.</span>
                         </div>
                     </div>
 
-                    <!-- Sign In / Sign Up Tabs -->
-                    <div class="gfb-tabs" role="tablist">
-                        <button type="button" class="gfb-tab-btn active" id="tabSignInBtn" onclick="AuthUI.switchTab('signin')">Sign In</button>
-                        <button type="button" class="gfb-tab-btn" id="tabSignUpBtn" onclick="AuthUI.switchTab('signup')">Create Account</button>
+                    <!-- Primary: Continue with Google Button -->
+                    <button type="button" class="btn-google-auth mb-3" onclick="AuthUI.signInWithGoogle()" id="googleSignInBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.24v3.15C3.26 21.36 7.33 24 12 24z"/>
+                            <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.24C.45 8.15 0 9.92 0 12s.45 3.85 1.24 5.42l4.04-3.15z"/>
+                            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.24 6.58l4.04 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                        </svg>
+                        <span>Continue with Google</span>
+                    </button>
+
+                    <div class="auth-divider">
+                        <span>or continue with email</span>
                     </div>
 
-                    <!-- SIGN IN FORM -->
-                    <form id="signInForm" onsubmit="AuthUI.handleSignIn(event)">
+                    <!-- Alternate Email Sign In -->
+                    <form id="emailAuthForm" onsubmit="AuthUI.handleEmailSignIn(event)">
                         <div class="mb-3">
-                            <label class="form-label" for="signInEmail">Email or Mobile Number</label>
-                            <input type="text" class="form-control" id="signInEmail" placeholder="e.g. ganeshan@example.com or 9876543210" required autocomplete="username">
-                        </div>
-                        <div class="mb-3">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                <label class="form-label mb-0" for="signInPass">Password</label>
-                                <a href="javascript:void(0)" onclick="AuthUI.forgotPassword()" style="font-size: 10.5px; color: #dfab57; text-decoration: none;">Forgot?</a>
-                            </div>
-                            <input type="password" class="form-control" id="signInPass" placeholder="Enter password" required autocomplete="current-password">
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="rememberMe" checked>
-                            <label class="form-check-label" for="rememberMe" style="font-size: 11px; color: #9cb1c2;">Keep me signed in</label>
-                        </div>
-                        <button type="submit" class="btn btn-bronze w-100 py-2" id="signInSubmitBtn">
-                            Sign In &amp; Proceed ↗
-                        </button>
-                    </form>
-
-                    <!-- SIGN UP FORM -->
-                    <form id="signUpForm" class="d-none" onsubmit="AuthUI.handleSignUp(event)">
-                        <div class="row g-2 mb-2">
-                            <div class="col-sm-6">
-                                <label class="form-label" for="signUpName">Full Name *</label>
-                                <input type="text" class="form-control" id="signUpName" placeholder="Your full name" required autocomplete="name">
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="form-label" for="signUpPhone">Mobile Number *</label>
-                                <input type="tel" class="form-control" id="signUpPhone" placeholder="+91 9876543210" required autocomplete="tel">
-                            </div>
-                        </div>
-                        <div class="mb-2">
-                            <label class="form-label" for="signUpEmail">Email Address *</label>
-                            <input type="email" class="form-control" id="signUpEmail" placeholder="yourname@gmail.com" required autocomplete="email">
-                        </div>
-                        <div class="row g-2 mb-2">
-                            <div class="col-sm-6">
-                                <label class="form-label" for="signUpKitchenType">Kitchen Type</label>
-                                <select class="form-select" id="signUpKitchenType">
-                                    <option value="Home / apartment">Home / Apartment</option>
-                                    <option value="Hotel / restaurant">Hotel / Restaurant</option>
-                                    <option value="Cloud kitchen / canteen">Cloud Kitchen / Canteen</option>
-                                    <option value="Other">Other Commercial</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="form-label" for="signUpCity">City / Location</label>
-                                <input type="text" class="form-control" id="signUpCity" placeholder="e.g. Chennai, 600001">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="signUpPass">Create Password *</label>
-                            <input type="password" class="form-control" id="signUpPass" placeholder="At least 6 characters" required autocomplete="new-password" minlength="6">
+                            <label class="form-label" for="signInEmail">Email Address</label>
+                            <input type="email" class="form-control" id="signInEmail" placeholder="e.g. ganeshan@gmail.com" required>
                         </div>
                         <button type="submit" class="btn btn-bronze w-100 py-2">
-                            Create Account &amp; Continue ↗
+                            Continue with Email ↗
                         </button>
                     </form>
 
-                    <!-- Quick 1-Click Demo Testing Pill -->
-                    <div class="demo-quick-login">
-                        <p>Testing as reviewer? Use instant demo access:</p>
-                        <button type="button" class="btn-demo-pill" onclick="AuthUI.quickDemoLogin()">⚡ 1-Click Instant Demo Login</button>
+                    <p class="text-center mt-3 mb-0" style="font-size: 11px; color: #7f95a8;">
+                        By continuing, you agree to Garbo Free Bharat Terms of Service &amp; Privacy Policy.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MOBILE OTP VERIFICATION MODAL (BEFORE ORDERING) ==================== -->
+    <div class="modal fade gfb-modal" id="gfbOtpModal" tabindex="-1" aria-labelledby="gfbOtpModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="d-flex align-items-center gap-2">
+                        <span style="font-size: 18px;">📱</span>
+                        <h5 class="modal-title mb-0" id="gfbOtpModalLabel">Verify Mobile Number</h5>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Step 1: Input Mobile -->
+                    <div id="otpStepPhone">
+                        <p class="text-muted mb-3" style="font-size: 12.5px;">
+                            We need your mobile number to coordinate technician demo arrival and dispatch your order updates.
+                        </p>
+                        <form onsubmit="OtpManager.sendOtp(event)">
+                            <label class="form-label" for="orderMobileInput">10-Digit Mobile Number *</label>
+                            <div class="phone-input-wrap mb-3">
+                                <div class="phone-prefix">🇮🇳 +91</div>
+                                <input type="tel" class="form-control" id="orderMobileInput" placeholder="98765 43210" pattern="[0-9]{10}" maxlength="10" required autofocus>
+                            </div>
+                            <button type="submit" class="btn btn-bronze w-100 py-2">
+                                Send 4-Digit OTP ↗
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Step 2: Enter OTP -->
+                    <div id="otpStepVerify" class="d-none">
+                        <div class="text-center mb-3">
+                            <span class="text-white fw-bold d-block" style="font-size: 14px;">Enter verification code sent to</span>
+                            <span class="text-muted" style="font-size: 12.5px;" id="otpPhoneDisplay">+91 98765 43210</span>
+                            <button type="button" class="btn btn-link btn-sm p-0 ms-2 text-decoration-none" style="font-size: 11px; color: #dfab57;" onclick="OtpManager.backToPhone()">Edit</button>
+                        </div>
+
+                        <div class="otp-input-group">
+                            <input type="text" class="otp-field" maxlength="1" id="otpDigit1" oninput="OtpManager.focusNext(1)" autofocus>
+                            <input type="text" class="otp-field" maxlength="1" id="otpDigit2" oninput="OtpManager.focusNext(2)">
+                            <input type="text" class="otp-field" maxlength="1" id="otpDigit3" oninput="OtpManager.focusNext(3)">
+                            <input type="text" class="otp-field" maxlength="1" id="otpDigit4" oninput="OtpManager.focusNext(4)">
+                        </div>
+
+                        <!-- Auto-fill hint for testing -->
+                        <div class="text-center mb-3">
+                            <button type="button" class="btn btn-sm btn-outline-light py-1 px-3" style="font-size: 11px; border-color: rgba(223, 171, 87, 0.4); color: #dfab57;" onclick="OtpManager.autoFillDemoOtp()">
+                                ⚡ Click to Auto-Fill Demo OTP (4826)
+                            </button>
+                        </div>
+
+                        <div class="otp-countdown mb-3">
+                            Resend code in <strong id="otpTimer">25</strong>s
+                            <button type="button" class="otp-resend-btn ms-2 d-none" id="otpResendBtn" onclick="OtpManager.resendOtp()">Resend OTP</button>
+                        </div>
+
+                        <button type="button" class="btn btn-bronze w-100 py-2" onclick="OtpManager.verifyOtp()">
+                            Verify OTP &amp; Confirm Order ✓
+                        </button>
                     </div>
                 </div>
             </div>
