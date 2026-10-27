@@ -1658,6 +1658,39 @@
                 padding: 10px
             }
         }
+    
+        .brand-logo-img {
+            height: 48px;
+            width: auto;
+            max-width: 195px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(16, 35, 51, 0.35));
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s;
+        }
+
+        .navbar-brand:hover .brand-logo-img {
+            transform: scale(1.05);
+            filter: drop-shadow(0 4px 14px rgba(201, 142, 59, 0.5));
+        }
+
+        .footer-logo {
+            height: 56px;
+            max-width: 220px;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 2px 8px rgba(16, 35, 51, 0.25));
+        }
+
+        @media (max-width: 575.98px) {
+            .brand-logo-img {
+                height: 40px;
+                max-width: 160px;
+            }
+            .footer-logo {
+                height: 46px;
+                max-width: 180px;
+            }
+        }
+
     </style>
 </head>
 
@@ -1706,7 +1739,7 @@
             enquiries are sent from this prototype.</div>
     </noscript>
     <nav class="navbar navbar-expand-lg sticky-top" aria-label="Main navigation">
-        <div class="container"><a class="navbar-brand" href="#home">✦GFB<small>GARBO FREE BHARAT</small></a><button
+        <div class="container"><a class="navbar-brand d-inline-flex align-items-center" href="#home" aria-label="GFB - Garbo Free Bharat Home"><img src="gfb_logo_transparent.png" alt="GFB - Garbo Free Bharat" class="brand-logo-img"></a><button
                 class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
                 aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation"><span
                     class="navbar-toggler-icon"></span></button>
@@ -2759,8 +2792,7 @@
     <footer class="footer">
         <div class="container">
             <div class="row gy-3 align-items-center">
-                <div class="col-md-3"><a class="navbar-brand text-decoration-none" href="#home">✦GFB<small>GARBO FREE
-                            BHARAT</small></a></div>
+                <div class="col-md-3"><a class="navbar-brand text-decoration-none d-inline-block" href="#home" aria-label="GFB - Garbo Free Bharat"><img src="gfb_logo_transparent.png" alt="GFB - Garbo Free Bharat" class="brand-logo-img footer-logo"></a></div>
                 <div class="col-md-5">
                     <p class="mb-0">Smart kitchen thinking. Clearer product information.</p>
                 </div>
